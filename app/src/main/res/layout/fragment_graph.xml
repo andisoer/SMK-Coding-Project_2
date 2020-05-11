@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".GraphFragment">
+    tools:context=".StatisticFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -13,7 +13,9 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/tbGraph"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"/>
+            android:layout_height="?attr/actionBarSize"
+            app:title="Statistik"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayoutGraph"
@@ -29,7 +31,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerGraph"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
