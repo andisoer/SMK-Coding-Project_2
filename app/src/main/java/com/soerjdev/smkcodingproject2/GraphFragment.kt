@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.fragment_graph.*
 /**
  * A simple [Fragment] subclass.
  */
-class StatisticFragment : Fragment() {
+class GraphFragment : Fragment() {
 
     private lateinit var graphViewPagerAdapter : StatisticViewPagerAdapter
 

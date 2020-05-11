@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".StatisticFragment">
+    tools:context=".GraphFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -15,7 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="Statistik"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
+            app:titleTextColor="@android:color/white"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayoutGraph"
@@ -23,6 +24,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             app:tabMode="fixed"
+            app:tabMaxWidth="0dp"
             app:tabIndicatorColor="@android:color/white"
             app:tabTextColor="@android:color/white"/>
 

@@ -14,13 +14,13 @@ class StatisticViewPagerAdapter(fragment : Fragment) : FragmentStateAdapter(frag
     override fun createFragment(position: Int): Fragment {
         return when (position){
             0 -> {
-                IndoStatisticFragment()
+                IndoGraphFragment()
             }
             1 -> {
-                WorldStatisticFragment()
+                WorldGraphFragment()
             }
             else -> {
-                IndoStatisticFragment()
+                IndoGraphFragment()
             }
         }
     }

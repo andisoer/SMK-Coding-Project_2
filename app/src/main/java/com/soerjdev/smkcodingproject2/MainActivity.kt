@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity()  {
                     loadFragment(DashboardFragment())
                 }
                 R.id.menuGraph -> {
-                    loadFragment(StatisticFragment())
+                    loadFragment(GraphFragment())
                 }
                 R.id.menuInfo -> {
                     loadFragment(InfoFragment())
