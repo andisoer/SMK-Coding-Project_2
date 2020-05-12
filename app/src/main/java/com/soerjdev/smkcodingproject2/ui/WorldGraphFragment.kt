@@ -1,4 +1,4 @@
-package com.soerjdev.smkcodingproject2
+package com.soerjdev.smkcodingproject2.ui
 
 import android.graphics.Color
 import android.os.Bundle
@@ -11,9 +11,8 @@ import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
-import kotlinx.android.synthetic.main.fragment_indo_graph.*
+import com.soerjdev.smkcodingproject2.R
 import kotlinx.android.synthetic.main.fragment_world_graph.*
-import java.io.Console
 
 /**
  * A simple [Fragment] subclass.
@@ -40,13 +39,19 @@ class WorldGraphFragment : Fragment() {
 
         val pieColor = arrayListOf(
             context?.let {
-                ContextCompat.getColor(it, R.color.colorConfirmed)
+                ContextCompat.getColor(it,
+                    R.color.colorConfirmed
+                )
             },
             context?.let {
-                ContextCompat.getColor(it, R.color.colorRecovered)
+                ContextCompat.getColor(it,
+                    R.color.colorRecovered
+                )
             },
             context?.let {
-                ContextCompat.getColor(it, R.color.colorDeath)
+                ContextCompat.getColor(it,
+                    R.color.colorDeath
+                )
             }
         )
 

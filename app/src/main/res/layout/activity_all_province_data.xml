@@ -1,39 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.GraphFragment">
+    tools:context=".ui.AllProvinceDataActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/tbGraph"
+            android:id="@+id/tbAllProvinceData"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="Statistik"
-            app:titleTextColor="@android:color/white"
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayoutGraph"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            app:tabMode="fixed"
-            app:tabMaxWidth="0dp"
-            app:tabIndicatorColor="@android:color/white"
-            app:tabTextColor="@android:color/white"/>
+            app:title="Data Seluruh Provinsi"
+            app:layout_scrollFlags="snap|enterAlwaysCollapsed|scroll"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPagerGraph"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAllProvinceData"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
+
+    <FrameLayout
+        android:id="@+id/attachmentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ProgressBar
+        android:id="@+id/pbLoadDataProvince"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/attachmentLayout"
+        app:layout_anchorGravity="center"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

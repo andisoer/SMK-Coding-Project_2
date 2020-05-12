@@ -3,6 +3,9 @@ package com.soerjdev.smkcodingproject2
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.soerjdev.smkcodingproject2.ui.DashboardFragment
+import com.soerjdev.smkcodingproject2.ui.GraphFragment
+import com.soerjdev.smkcodingproject2.ui.InfoFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity()  {
