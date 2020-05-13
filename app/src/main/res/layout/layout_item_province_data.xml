@@ -14,109 +14,89 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nama Negara"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
-
-            <ImageView
-                android:id="@+id/ivArrowItemProvinceData"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_action_keyboard_arrow_down"
-                android:layout_centerVertical="true"/>
-
-        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Provinsi"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="0.1dp"
-            android:background="@android:color/black"
-            android:layout_marginTop="8dp"
-            android:visibility="gone"
-            android:layout_marginVertical="8dp"/>
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="4dp">
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Positif"
                     android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"/>
 
                 <TextView
-                    android:id="@+id/tvPositifProvinceDashboard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1231"
+                    android:text="14.230"
                     android:textColor="@color/colorConfirmed"
-                    android:layout_alignParentEnd="true"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
+                    android:layout_marginTop="4dp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
-            </RelativeLayout>
+            </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="4dp">
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sembuh"
                     android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"/>
 
                 <TextView
-                    android:id="@+id/tvRecoveredProvinceDashboard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="561"
+                    android:text="2.300"
                     android:textColor="@color/colorRecovered"
-                    android:layout_alignParentEnd="true"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
+                    android:layout_marginTop="4dp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
-            </RelativeLayout>
+            </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="4dp">
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Meninggal"
                     android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"/>
 
                 <TextView
-                    android:id="@+id/tvDeathProvinceDashboard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5"
+                    android:text="921"
+                    android:layout_marginTop="4dp"
                     android:textColor="@color/colorDeath"
-                    android:layout_alignParentEnd="true"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
-            </RelativeLayout>
+            </LinearLayout>
 
         </LinearLayout>
 

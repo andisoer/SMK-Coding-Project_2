@@ -3,4 +3,105 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="pertanyaan">
+        <item>Apa itu coronavirus?</item>
+        <item>Apa itu COVID-19?</item>
+        <item>Apa saja gejala COVID-19?</item>
+        <item>Bagaimana cara COVID-19 menyebar?</item>
+        <item>Apa yang dapat saya lakukan untuk melindungi diri saya dan mencegah penyebaran penyakit ini?</item>
+        <item>Seberapa besar kemungkinan saya tertular COVID-19?</item>
+        <item>Apakah saya harus khawatir tentang COVID-19?</item>
+        <item>Siapa yang berisiko menderita penyakit serius?</item>
+        <item>Apakah antibiotik efektif mencegah dan menangani COVID-19?</item>
+        <item>Apakah ada obat atau perawatan yang dapat mencegah atau menyembuhkan COVID-19?</item>
+        <item>Apakah ada vaksin, obat atau perawatan untuk COVID-19?</item>
+        <item>Apakah COVID sama dengan SARS?</item>
+        <item>Perlukah saya mengenakan masker untuk melindungi diri saya?</item>
+        <item>Cara mengenakan, menggunakan, melepas dan membuang masker</item>
+        <item>Berapa lama masa inkubasi COVID-19?</item>
+        <item>Apakah manusia dapat terinfeksi COVID-19 dari hewan?</item>
+        <item>Apakah saya dapat tertular COVID-19 dari hewan peliharaan saya?</item>
+        <item>Berapa lama virus ini bertahan di atas permukaan?</item>
+        <item>Apakah paket dari tempat di mana COVID-19 telah dilaporkan terjadi aman untuk diterima?</item>
+        <item>Apakah ada hal yang tidak boleh saya lakukan?</item>
+    </string-array>
+
+    <string-array name="jawaban">
+        <item>Coronavirus adalah suatu kelompok virus yang dapat menyebabkan penyakit pada hewan atau manusia. Beberapa jenis coronavirus diketahui menyebabkan infeksi saluran nafas pada manusia mulai dari batuk pilek hingga yang lebih serius seperti Middle East Respiratory Syndrome (MERS) dan Severe Acute Respiratory Syndrome (SARS). Coronavirus jenis baru yang ditemukan menyebabkan penyakit COVID-19.</item>
+        <item>COVID-19 adalah penyakit menular yang disebabkan oleh jenis coronavirus yang baru ditemukan. Ini merupakan virus baru dan penyakit yang sebelumnya tidak dikenal sebelum terjadi wabah di Wuhan, Tiongkok, bulan Desember 2019.</item>
+        <item>Gejala-gejala COVID-19 yang paling umum adalah demam, rasa lelah, dan batuk kering. Beberapa pasien mungkin mengalami rasa nyeri dan sakit, hidung tersumbat, pilek, sakit tenggorokan atau diare, Gejala-gejala yang dialami biasanya bersifat ringan dan muncul secara bertahap. Beberapa orang yang terinfeksi tidak menunjukkan gejala apa pun dan tetap merasa sehat. Sebagian besar (sekitar 80%) orang yang terinfeksi berhasil pulih tanpa perlu perawatan khusus. Sekitar 1 dari 6 orang yang terjangkit COVID-19 menderita sakit parah dan kesulitan bernapas. Orang-orang lanjut usia (lansia) dan orang-orang dengan kondisi medis yang sudah ada sebelumnya seperti tekanan darah tinggi, gangguan jantung atau diabetes, punya kemungkinan lebih besar mengalami sakit lebih serius. Mereka yang mengalami demam, batuk dan kesulitan bernapas sebaiknya mencari pertolongan medis.</item>
+        <item>Orang dapat tertular COVID-19 dari orang lain yang terjangkit virus ini. COVID-19 dapat menyebar dari orang ke orang melalui percikan-percikan dari hidung atau mulut yang keluar saat orang yang terjangkit COVID-19 batuk atau mengeluarkan napas. Percikan-percikan ini kemudian jatuh ke benda-benda dan permukaan-permukaan di sekitar. Orang yang menyentuh benda atau permukaan tersebut lalu menyentuh mata, hidung atau mulutnya, dapat terjangkit COVID-19. Penularan COVID-19 juga dapat terjadi jika orang menghirup percikan yang keluar dari batuk atau napas orang yang terjangkit COVID-19. Oleh karena itu, penting bagi kita untuk menjaga jarak lebih dari 1 meter dari orang yang sakit. WHO terus mengkaji perkembangan penelitian tentang cara penyebaran COVID-19 dan akan menyampaikan temuan-temuan terbaru.
+
+Apakah virus penyebab COVID-19 ini dapat menular melalui udara?
+Menurut penelitian sejauh ini, virus penyebab COVID-19 ini umumnya menular melalui kontak dengan percikan dari saluran pernapasan, bukan melalui udara. Lihat jawaban sebelumnya tentang “Bagaimana cara COVID-19 menyebar?”
+
+Apakah COVID-19 dapat menular dari orang yang tidak menunjukkan gejala? Cara utama penyebaran penyakit ini adalah melalui percikan saluran pernapasan yang dihasilkan saat batuk. Risiko penularan COVID-19 dari orang yang tidak ada gejala sama sekali sangatlah rendah. Namun, banyak orang yang terjangkit COVID-19 hanya mengalami gejala-gejala ringan, terutama pada tahap-tahap awal. Karena itu, COVID-19 dapat menular dari orang yang, misalnya, hanya batuk ringan tetapi merasa sehat. WHO terus mengkaji perkembangan penelitian tentang cara penyebaran COVID-19 dan akan menyampaikan temuan-temuan terbaru.
+
+Apakah saya dapat tertular COVID-19 dari feses orang yang terjangkit penyakit ini? Risiko penularan COVID-19 dari feses orang yang terinfeksi COVID-19 adalah kecil. Penelitian awal memang mengindikasikan bahwa dalam kasus-kasus tertentu virus ini bisa ada di feses, tetapi dalam konteks wabah yang sedang terjadi ini, rute penularan ini tidak menjadi kekhawatiran. WHO terus mengkaji perkembangan penelitian tentang cara penyebaran COVID-19 dan akan menyampaikan temuan-temuan terbaru. Namun demikian, karena risiko tetap ada (walaupun kecil), hal ini memperkuat alasan mengapa kita harus rajin mencuci tangan setelah menggunakan kamar mandi dan sebelum makan.</item>
+        <item>Perlindungan untuk semua orang
+
+Tetap ikuti informasi terbaru tentang wabah COVID-19 yang tersedia di situs web WHO dan melalui Kementerian Kesehatan dan Dinas Kesehatan daerah Anda. Di banyak negara di dunia, kasus dan bahkan wabah COVID-19 telah terjadi. Pemerintah Tiongkok dan pemerintah beberapa negara lain telah berhasil memperlambat atau menghentikan wabah yang terjadi di wilayahnya. Namun, situasi yang ada masih sulit diprediksi. Karena itu, tetaplah ikuti berita terbaru.
+Anda dapat mengurangi risiko terinfeksi atau menyebarkan COVID-19 dengan cara melakukan beberapa langkah pencegahan:
+
+1. Seringlah mencuci tangan Anda dengan air bersih mengalir dan sabun, atau cairan antiseptik berbahan dasar alkohol. Mengapa? Mencuci tangan dengan air bersih yang mengalir dan sabun, atau cairan antiseptik berbahan dasar alkohol dapat membunuh virus di tangan Anda.
+
+2. Jaga jarak setidaknya 1 meter dengan orang yang batuk-batuk atau bersin-bersin. Mengapa? Ketika batuk atau bersin, orang mengeluarkan percikan dari hidung atau mulutnya dan percikan ini dapat membawa virus. Jika Anda terlalu dekat, Anda dapat menghirup percikan ini dan juga virus COVID-19 jika orang yang batuk itu terjangkit penyakit ini.
+
+3. Hindari menyentuh mata, hidung, dan mulut. Mengapa? Tangan menyentuh berbagai permukaan benda dan virus penyakit ini dapat tertempel di tangan. Tangan yang terkontaminasi dapat membawa virus ini ke mata, hidung atau mulut, yang dapat menjadi titik masuk virus ini ke tubuh Anda sehingga Anda menjadi sakit.
+
+4. Pastikan Anda dan orang-orang di sekitar Anda mengikuti etika batuk dan bersin dengan cara menutup mulut dan hidung dengan siku terlipat atau tisu saat batuk atau bersin dan segera buang tisu bekas tersebut. Mengapa? Percikan dapat menyebarkan virus. Dengan mengikuti etika batuk dan bersin, Anda melindungi orang-orang di sekitar dari virus-virus seperti batuk pilek, flu dan COVID-19.
+
+5. Tetaplah tinggal di rumah jika merasa kurang sehat. Jika Anda demam, batuk dan kesulitan bernapas, segeralah cari pertolongan medis dan tetap memberitahukan kondisi Anda terlebih dahulu. Ikuti arahan Dinas Kesehatan setempat Anda. Mengapa? Kementerian Kesehatan dan Dinas Kesehatan daerah akan memiliki informasi terbaru tentang situasi di wilayah Anda. Dengan memberitahukan kondisi Anda terlebih dahulu, petugas kesehatan yang akan merawat Anda dapat segera mengarahkan Anda ke fasilitas pelayanan kesehatan yang tepat. Langkah ini juga melindungi Anda dan membantu mencegah penyebaran virus dan infeksi lainnya.
+
+6. Tetap ikuti informasi terbaru tentang hotspot-hotspot COVID-19 (kota atau daerah di mana COVID-19 menyebar luas). Jika memungkinkan, hindari bepergian ke tempat-tempat tersebut – terutama jika Anda sudah berusia lanjut atau mengidap diabetes, sakit jantung atau paru-paru Mengapa? Kemungkinan tertular COVID-19 lebih tinggi di tempat-tempat tersebut.
+
+Perlindungan jika sedang berada di atau pernah berkunjung ke (dalam waktu 14 hari terakhir) wilayah di mana COVID-19 menyebar
+
+1. Ikuti panduan di atas (Perlindungan untuk semua orang)
+
+2. Lakukan isolasi diri dengan cara tetap tinggal di rumah jika Anda mulai merasa kurang sehat, bahkan jika gejalanya ringan seperti sakit kepala, demam berskala rendah (37.3 C atau lebih) dan pilek ringan, sampai Ana sembuh. Jika orang lain harus membawakan Anda persediaan atau jika Anda harus keluar, misal untuk membeli makanan, kenakanlah masker agar tidak menginfeksi orang lain.
+Mengapa? Jika Anda tidak melakukan kontak fisik dengan orang lain dan tidak mengunjungi fasilitas medis, diri Anda dan orang lain akan terlindung dari virus COVID-19 dan lainnya dan fasilitas kesehatan akan dapat beroperasi lebih efektif.
+
+3. Jika Anda demam, batuk dan kesulitan bernapas, segera minta nasihat dokter karena kondisi ini bisa jadi dikarenakan infeksi saluran pernapasan atau kondisi serius lainnya. Jika Anda sudah memberitahukan kondisi Anda terlebih dahulu, petugas kesehatan dapat lebih cepat mengarahkan Anda ke fasilitas kesehatan yang tepat. Hal ini juga membantu mencegah kemungkinan penyebaran COVID-19 dan virus-virus lainnya.</item>
+        <item>Risiko tertular tergantung lokasi Anda – lebih tepatnya, apakah sedang terjadi wabah COVID-19 di sana. Di sebagian besar lokasi, risiko tertular COVID-19 masih rendah. Namun, ada tempat-tempat (kota atau wilayah) di seluruh dunia di mana penyakit ini menyebar. Orang yang tinggal di atau mengunjungi wilayah-wilayah ini lebih berisiko tertular COVID-19. Pemerintah-pemerintah dan otoritas kesehatan mengambil tindakan tegas setiap kali kasus COVID-19 baru teridentifikasi. Patuhilah larangan-larangan perjalanan, pergerakan atau pertemuan dengan jumlah peserta yang besar yang diberlakukan di tempat Anda berada. Bekerja sama dengan upaya-upaya pengendalian penyakit akan menurunkan risiko Anda tertular atau menyebarkan COVID-19.
+
+Wabah dan penularan COVID-19 dapat ditahan dan dihentikan, seperti yang terjadi di Tiongkok dan beberapa negara lain. Sayangnya, wabah-wabah baru terjadi dengan cepat. Anda perlu mengetahui situasi di tempat Anda berada atau yang akan Anda kunjungi. WHO mempublikasikan laporan terbaru tentang situasi COVID-19 di seluruh dunia setiap harinya.
+</item>
+        <item>Penyakit yang disebabkan infeksi COVID-19 pada umumnya bersifat ringan, terutama pada anak-anak dan orang dewasa muda. Namun, infeksi ini tetap dapat menyebabkan penyakit serius: sekitar 1 dari 5 orang yang terjangkit membutuhkan perawatan di rumah sakit. Karenanya, wajar jika orang khawatir tentang dampak wabah COVID-19 pada diri mereka dan orang-orang yang mereka kasihi.
+Kita dapat menyalurkan kekhawatiran kita dengan cara melindungi diri kita, orang-orang yang kita kasihi dan masyarakat kita. Tindakan yang terpenting adalah rajin mencuci tangan secara menyeluruh dan menutup hidung dan mulut saat batuk dan bersin. Selain itu, tetap ikuti perkembangan informasi dan patuhi nasihat dinas kesehatan setempat termasuk pembatasan perjalanan, pergerakan dan pertemuan yang diberlakukan.</item>
+        <item>Sementara ini kita masih perlu mempelajari dampak COVID-19 terhadap manusia, tetapi sejauh ini lansia dan orang-orang yang sudah memiliki keadaan medis sebelumnya (seperti tekanan darah tinggi, penyakit jantung, penyakit paru-paru, kanker atau diabetes) terindikasi mengalami sakit yang lebih parah.</item>
+        <item>Tidak. Antibiotik tidak dapat melawan virus, melainkan hanya melawan infeksi bakteri. COVID-19 disebabkan oleh virus sehingga antibiotik tidak efektif. Antibiotik tidak boleh digunakan untuk mencegah atau mengobati COVID-19. Antibiotik hanya digunakan sesuai arahan dokter untuk mengobati infeksi bakteri.</item>
+        <item>Meskipun obat-obatan barat, tradisional atau buatan sendiri dapat meringankan gejala-gejala COVID-19, obat-obatan yang ada belum terbukti dapat mencegah atau menyembuhkan penyakit ini. WHO tidak merekomendasikan tindakan mengobati diri sendiri dengan obat apa pun, termasuk antibiotik, untuk mencegah atau menyembuhkan COVID-19. Namun, beberapa obat-obatan barat dan tradisional sedang diuji klinis. WHO akan terus memberikan informasi terbaru seiring tersedianya temuan klinis.</item>
+        <item>Belum ada. Hingga kini, belum ada vaksin dan obat melawan virus tertentu untuk mencegah atau mengobati COVID-19. Namun, orang-orang yang sakit perlu mendapatkan perawatan untuk meredakan gejala-gejalanya. Orang-orang yang sakit serius harus dibawa ke rumah sakit. Sebagian besar pasien sembuh karena perawatan untuk gejala yang dialami. Ada beberapa kandidat vaksin dan obat tertentu yang masih diteliti melalui uji klinis. WHO mengkoordinasikan upaya menyediakan vaksin dan obat yang mencegah dan mengobati COVID-19.
+Cara paling efektif melindungi diri dan orang lain dari COVID-19 adalah sering mencuci tangan, menutup mulut saat batuk dengan siku yang terlipat atau tisu, dan menjaga jarak setidaknya 1 meter dari orang yang batuk-batuk atau bersin-bersin.</item>
+        <item>Tidak. Virus penyebab COVID-19 dan virus penyebab wabah Severe Acute Respiratory Syndrome (SARS) tahun 2003 memang memiliki hubungan genetik dengan satu sama lain, tetapi penyakit yang ditimbulkannya berbeda. SARS lebih mematikan tetapi penularannya lebih rendah dibandingkan COVID-19. Tidak ada wabah SARS di mana pun sejak tahun 2003.</item>
+        <item>Kenakan masker hanya jika Anda sakit disertai gejala-gejala COVID-19 (terutama batuk) atau merawat orang yang mungkin terjangkit COVID-19. Masker sekali pakai hanya dapat digunakan satu kali saja. Jika Anda tidak sakit dan tidak merawat orang yang sakit, namun Anda memakai masker maka Anda memboroskan masker. Telah terjadi kekurangan masker di mana-mana, sehingga WHO mendorong orang-orang untuk menggunakan masker dengan bijak.
+WHO menyarankan agar masker medis digunakan secara bijak, sehingga pemborosan tidak terjadi dan masker tidak disalahgunakan.
+Cara paling efektif melindungi diri dan orang lain dari COVID-19 adalah sering mencuci tangan, menutup mulut saat batuk dengan siku yang terlipat atau tisu, dan menajga jarak setidaknya 1 meter dari orang yang batuk-batuk atau bersin-bersin.</item>
+        <item>1. Ingat, masker sebaiknya hanya digunakan oleh tenaga kesehatan, orang yang merawat orang sakit, dan orang-orang yang memiliki gejala-gejala pernapasan, seperti demam dan batuk.
+2. Sebelum menyentuh masker, bersihkan tangan dengan air bersih mengalir dan sabun atau cairan antiseptik berbahan dasar alkohol.
+3. Ambil masker dan periksa apakah ada sobekan atau lubang.
+4. Pastikan arah masker sudah benar (pita logam terletak di sisi atas).
+5. Pastikan sisi depan masker (sisi yang berwarna) menghadap depan.
+6. Letakkan masker di wajah Anda. Tekan pita logam atau sisi masker yang kaku sampai menempel sempurna ke hidung. 7. Tarik sisi bawah masker sampai menutupi mulut dan dagu.
+8. Setelah digunakan, lepas masker; lepas tali elastis dari daun telinga sambil tetap menjauhkan masker dari wajah dan pakaian, untuk menghindari permukaan masker yang mungkin terkontaminasi.
+9. Segera buang masker di tempat sampah tertutup setelah digunakan.
+10. Bersihkan tangan setelah menyentuh atau membuang masker – gunakan cairan antiseptik berbahan dasar alkohol atau, jika tangan terlihat kotor, cuci tangan dengan air bersih mengalir dan sabun.</item>
+        <item>Masa inkubasi adalah jangka waktu antara terjangkit virus dan munculnya gejala penyakit. Pada umumnya masa inkubasi COVID-19 diperkirakan berkisar dari 1 hingga 14 hari, umumnya sekitar lima hari. Perkiraan ini akan diperbarui seiring dengan tersedianya lebih banyak data.</item>
+        <item>Coronavirus adalah kelompok virus yang biasanya terdapat pada binatang. Terkadang, orang terinfeksi virus-virus ini, yang kemudian menyebar ke orang lain, seperti SARS-CoV dan MERS-CoV. SARS-CoV dikaitkan dengan musang, sedangkan MERS-CoV ditularkan oleh unta. Hewan penular COVID-19 belum bisa dipastikan sampai saat ini.
+Untuk melindungi diri, misalnya saat mengunjungi pasar hewan hidup, hindari kontak langsung dengan hewan hidup dan permukaan yang bersentuhan dengan hewan. Pastikan kebersihan makanan selalu dijaga. Berhati-hatilah ketika memegang daging, susu atau organ hewan mentah untuk menghindari kontaminasi dengan makanan mentah dan hindari konsumsi produk-produk hewan yang mentah atau tidak matang sempurna.</item>
+        <item>Tidak. Tidak ada bukti yang menunjukkan bahwa hewan pendamping atau peliharaan seperti kucing dan anjing terinfeksi atau menyebarkan virus penyebab COVID-19.
+WHO terus memantau penelitian terbaru tentang topik ini serta topik-topik COVID-19 lainnya dan akan menyampaikan temuan-temuan terbaru.</item>
+        <item>Belum dipastikan berapa lama virus penyebab COVID-19 bertahan di atas permukaan, tetapi perilaku virus ini menyerupai jenis-jenis coronavirus lainnya. Penelitian coronavirus, dan juga informasi awal tentang virus penyebab COVID-19, mengindikasikan bahwa coronavirus dapat bertahan di permukaan antara beberapa jam hingga beberapa hari. Lamanya coronavirus bertahan mungkin dipengaruhi kondisi-kondisi yang berbeda (seperti jenis permukaan, suhu atau kelembapan lingkungan).
+Jika Anda merasa suatu permukaan mungkin terinfeksi, bersihkanlah dengan disinfektan sederhana untuk membunuh virus dan melindungi diri Anda dan orang lain. Cuci tangan Anda dengan air bersih mengalir dan sabun atau cairan antiseptik berbahan dasar alkohol. Hindari menyentuh mata, mulut, atau hidung Anda.</item>
+        <item>Ya. Kecil kemungkinan barang komersial terkontaminasi dari orang yang terinfeksi dan kecil juga risiko tertular virus penyebab COVID-19 dari paket yang sudah berpindah, berada dalam perjalanan, dan terpapar kondisi serta suhu yang berbeda-beda.</item>
+        <item>Tindakan-tindakan berikut TIDAK efektif melawan COVID-19 dan bahkan bisa berbahaya:
+• Merokok
+• Mengenakan lebih dari satu masker
+• Meminum antibiotik (Lihat pertanyaan 10 "Apakah antibiotik efektif mencegah dan menangani COVID-19?")
+
+Apa pun keadaannya, jika Anda mengalami demam, batuk dan kesulitan bernapas, segeralah mencari pertolongan medis untuk mengurangi risiko terkena infeksi yang lebih parah dan sampaikan riwayat perjalanan Anda baru-baru ini kepada tenaga kesehatan.</item>
+    </string-array>
+
 </resources>
