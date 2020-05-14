@@ -15,6 +15,7 @@
         android:padding="8dp">
 
         <TextView
+            android:id="@+id/tvNameItemProvinceData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nama Provinsi"
@@ -41,6 +42,7 @@
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"/>
 
                 <TextView
+                    android:id="@+id/tvPositifItemProvinceData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="14.230"
@@ -65,6 +67,7 @@
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"/>
 
                 <TextView
+                    android:id="@+id/tvRecoveredItemProvinceData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2.300"
@@ -89,6 +92,7 @@
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"/>
 
                 <TextView
+                    android:id="@+id/tvDeathItemProvinceData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="921"
