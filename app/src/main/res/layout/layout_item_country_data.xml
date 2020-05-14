@@ -14,25 +14,12 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nama Negara"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
-
-            <ImageView
-                android:id="@+id/ivArrowItemProvinceData"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_action_keyboard_arrow_down"
-                android:layout_centerVertical="true"/>
-
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/tvNameItemCountryData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Negara"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,14 +27,14 @@
             android:padding="0.1dp"
             android:background="@android:color/black"
             android:layout_marginTop="8dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_marginVertical="8dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -62,7 +49,7 @@
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
 
                 <TextView
-                    android:id="@+id/tvPositifProvinceDashboard"
+                    android:id="@+id/tvPositifItemCountryData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1231"
@@ -85,7 +72,7 @@
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
 
                 <TextView
-                    android:id="@+id/tvRecoveredProvinceDashboard"
+                    android:id="@+id/tvRecoveredItemCountryData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="561"
@@ -108,7 +95,7 @@
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
 
                 <TextView
-                    android:id="@+id/tvDeathProvinceDashboard"
+                    android:id="@+id/tvDeathItemCountryData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5"

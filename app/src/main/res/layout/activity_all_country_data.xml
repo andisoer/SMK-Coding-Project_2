@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.AllCountryDataActivity">
+    tools:context=".ui.AllCountryDataActivity"
+    android:background="@color/colorWhiteDark">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -15,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="Data Seluruh Negara"
-            app:layout_scrollFlags="snap|enterAlwaysCollapsed|scroll"
+            app:layout_scrollFlags="snap|enterAlways|scroll"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
 
     </com.google.android.material.appbar.AppBarLayout>

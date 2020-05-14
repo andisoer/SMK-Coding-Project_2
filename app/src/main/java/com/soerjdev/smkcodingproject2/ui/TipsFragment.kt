@@ -1,6 +1,5 @@
 package com.soerjdev.smkcodingproject2.ui
 
-import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.soerjdev.smkcodingproject2.R
-import com.soerjdev.smkcodingproject2.TipsAdapter
+import com.soerjdev.smkcodingproject2.adapter.TipsAdapter
 import com.soerjdev.smkcodingproject2.model.ModelTips
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_info.*
@@ -54,7 +53,10 @@ class TipsFragment : Fragment() {
 
     private fun setRecylerView() {
         rvInfo.layoutManager = LinearLayoutManager(activity)
-        rvInfo.adapter = TipsAdapter(activity!!, listTips)
+        rvInfo.adapter = TipsAdapter(
+            activity!!,
+            listTips
+        )
         hideProgressBar()
     }
 
