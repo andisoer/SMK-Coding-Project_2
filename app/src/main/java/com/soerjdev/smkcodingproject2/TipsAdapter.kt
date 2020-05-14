@@ -38,7 +38,15 @@ class TipsAdapter(private val context: Context, private val listTips: ArrayList<
 
             val expanded = item.expandedView
 
-            containerSubInfoItem.visibility = if (expanded) View.VISIBLE else View.GONE
+            if (expanded){
+                containerSubInfoItem.visibility = View.VISIBLE
+                ivArrowTipsItem.scaleX = -1f
+                ivArrowTipsItem.scaleY = -1f
+            }else{
+                containerSubInfoItem.visibility = View.GONE
+                ivArrowTipsItem.scaleX = 1f
+                ivArrowTipsItem.scaleY = 1f
+            }
 
             tvQuestionInfoItem.text = item.pertanyaan
             tvDescriptionTipsItem.text = item.jawaban
