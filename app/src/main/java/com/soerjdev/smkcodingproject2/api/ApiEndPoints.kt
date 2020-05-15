@@ -1,5 +1,8 @@
 package com.soerjdev.smkcodingproject2.api
 
+import com.soerjdev.smkcodingproject2.model.GlobalDeath
+import com.soerjdev.smkcodingproject2.model.GlobalPositif
+import com.soerjdev.smkcodingproject2.model.GlobalRecovered
 import com.soerjdev.smkcodingproject2.model.globaldata.GlobalDataItem
 import com.soerjdev.smkcodingproject2.model.provinsidata.ProvinsiDataItem
 import com.soerjdev.smkcodingproject2.model.summaryindodata.SummaryIndoDataItem
@@ -16,4 +19,13 @@ interface ApiEndPoints {
 
     @GET("indonesia")
     fun getSummaryIndoData(): Call<List<SummaryIndoDataItem>>
+
+    @GET("positif")
+    fun getGlobalPositif(): Call<GlobalPositif>
+
+    @GET("sembuh")
+    fun getGlobalRecovered(): Call<GlobalRecovered>
+
+    @GET("meninggal")
+    fun getGlobalDeath(): Call<GlobalDeath>
 }

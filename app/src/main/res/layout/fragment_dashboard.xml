@@ -96,9 +96,10 @@
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
                         <TextView
+                            android:id="@+id/tvPersenPositifProvinceDashboard"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="(25%)"
+                            android:text="(0%)"
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="4dp"
                             android:layout_toStartOf="@id/tvPositifProvinceDashboard"
@@ -108,7 +109,7 @@
                             android:id="@+id/tvPositifProvinceDashboard"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1231"
+                            android:text="0"
                             android:textColor="@color/colorConfirmed"
                             android:layout_alignParentEnd="true"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
@@ -128,9 +129,10 @@
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
                         <TextView
+                            android:id="@+id/tvPersenRecoveredProvinceDashboard"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="(50%)"
+                            android:text="(0%)"
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="4dp"
                             android:layout_toStartOf="@id/tvRecoveredProvinceDashboard"
@@ -140,7 +142,7 @@
                             android:id="@+id/tvRecoveredProvinceDashboard"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="561"
+                            android:text="0"
                             android:textColor="@color/colorRecovered"
                             android:layout_alignParentEnd="true"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
@@ -160,9 +162,10 @@
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
                         <TextView
+                            android:id="@+id/tvPersenDeathProvinceDashboard"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="(0.2%)"
+                            android:text="(0%)"
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="4dp"
                             android:layout_toStartOf="@id/tvDeathProvinceDashboard"
@@ -172,7 +175,7 @@
                             android:id="@+id/tvDeathProvinceDashboard"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="5"
+                            android:text="0"
                             android:textColor="@color/colorDeath"
                             android:layout_alignParentEnd="true"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
@@ -398,9 +401,10 @@
                                 android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"/>
 
                             <TextView
+                                android:id="@+id/tvPositifGlobalDashboard"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="5.304.123"
+                                android:text="0"
                                 android:textColor="@color/colorConfirmed"
                                 android:layout_marginTop="4dp"
                                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
@@ -422,9 +426,10 @@
                                 android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"/>
 
                             <TextView
+                                android:id="@+id/tvRecoveredGlobalDashboard"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="1.240.132"
+                                android:text="0"
                                 android:textColor="@color/colorRecovered"
                                 android:layout_marginTop="4dp"
                                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
@@ -446,9 +451,10 @@
                                 android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"/>
 
                             <TextView
+                                android:id="@+id/tvDeathGlobalDashboard"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="240.123"
+                                android:text="0"
                                 android:layout_marginTop="4dp"
                                 android:textColor="@color/colorDeath"
                                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
