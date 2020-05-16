@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF5722</color>
 
     <color name="colorWhiteDark">#F8F8F8</color>
+    <color name="colorGrey">#808080</color>
 
     <color name="colorDeath">#F76353</color>
     <color name="colorRecovered">#00CC99</color>

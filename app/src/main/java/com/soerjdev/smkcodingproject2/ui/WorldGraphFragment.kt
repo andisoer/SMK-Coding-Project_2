@@ -19,6 +19,7 @@ import com.soerjdev.smkcodingproject2.api.httpClient
 import com.soerjdev.smkcodingproject2.model.GlobalDeath
 import com.soerjdev.smkcodingproject2.model.GlobalPositif
 import com.soerjdev.smkcodingproject2.model.GlobalRecovered
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_world_graph.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -171,6 +172,11 @@ class WorldGraphFragment : Fragment() {
         pbLoadWorldGraph.visibility = View.GONE
         pieCharWorldGraph.visibility = View.VISIBLE
         pieCharWorldGraph.animateY(1500, Easing.EaseInOutSine)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        clearFindViewByIdCache()
     }
 
 }

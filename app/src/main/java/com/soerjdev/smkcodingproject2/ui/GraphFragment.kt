@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.google.android.material.tabs.TabLayoutMediator
 import com.soerjdev.smkcodingproject2.R
 import com.soerjdev.smkcodingproject2.adapter.StatisticViewPagerAdapter
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_graph.*
 
 /**
@@ -39,5 +40,10 @@ class GraphFragment : Fragment() {
         ).attach()
 
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        this.clearFindViewByIdCache()
     }
 }

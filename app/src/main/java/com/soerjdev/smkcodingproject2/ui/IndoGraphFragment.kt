@@ -17,6 +17,7 @@ import com.soerjdev.smkcodingproject2.api.ApiEndPoints
 import com.soerjdev.smkcodingproject2.api.apiRequest
 import com.soerjdev.smkcodingproject2.api.httpClient
 import com.soerjdev.smkcodingproject2.model.summaryindodata.SummaryIndoDataItem
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_indo_graph.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -129,4 +130,8 @@ class IndoGraphFragment : Fragment() {
         pieChartIndoGraph.animateY(1500, Easing.EaseInOutSine)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        this.clearFindViewByIdCache()
+    }
 }

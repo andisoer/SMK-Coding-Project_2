@@ -16,8 +16,10 @@ import com.soerjdev.smkcodingproject2.model.GlobalPositif
 import com.soerjdev.smkcodingproject2.model.GlobalRecovered
 import com.soerjdev.smkcodingproject2.model.provinsidata.ProvinsiDataItem
 import com.soerjdev.smkcodingproject2.model.summaryindodata.SummaryIndoDataItem
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.layout_item_country_data.*
+import kotlinx.android.synthetic.main.layout_shimmer_dashboard.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -107,36 +109,39 @@ class DashboardFragment : Fragment() {
                 if(response.isSuccessful){
                     if(response.body()?.size != 0){
                         listProvince = response.body()!!
-                        getGlobalData()
+                        getGlobalDataPositif()
                     }
                 }
             }
         })
     }
 
-    private fun getGlobalData() {
+    private fun getGlobalDataPositif() {
         val httpClient = httpClient()
         val apiRequest = apiRequest<ApiEndPoints>(httpClient)
 
         val call = apiRequest.getGlobalPositif()
-        val call2 = apiRequest.getGlobalRecovered()
-        val call3 = apiRequest.getGlobalDeath()
+
         call.enqueue(object: Callback<GlobalPositif> {
             override fun onFailure(call: Call<GlobalPositif>, t: Throwable) {
             }
 
             override fun onResponse(call: Call<GlobalPositif>, response: Response<GlobalPositif>) {
-                when {
-                    response.isSuccessful ->
-                        when {
-                            response.body() != null ->
-                            globalPositif = response.body()!!.value
-                        }
+                if(response.isSuccessful){
+                    if(response.body() != null){
+                        globalPositif = response.body()!!.value
+                        getGlobalDataRecovered()
+                    }
                 }
-                setData()
             }
-
         })
+    }
+
+    private fun getGlobalDataRecovered() {
+        val httpClient = httpClient()
+        val apiRequest = apiRequest<ApiEndPoints>(httpClient)
+
+        val call2 = apiRequest.getGlobalRecovered()
 
         call2.enqueue(object: Callback<GlobalRecovered> {
             override fun onFailure(call: Call<GlobalRecovered>, t: Throwable) {
@@ -146,30 +151,33 @@ class DashboardFragment : Fragment() {
                 call: Call<GlobalRecovered>,
                 response: Response<GlobalRecovered>
             ) {
-                when {
-                    response.isSuccessful ->
-                        when {
-                            response.body() != null ->
-                                globalRecovered = response.body()!!.value
-                        }
+                if (response.isSuccessful){
+                    if(response.body() != null){
+                        globalRecovered = response.body()!!.value
+                        getGlobalDataDeath()
+                    }
                 }
-                setData()
             }
         })
+    }
 
-        call3.enqueue(object: Callback<GlobalDeath> {
+    private fun getGlobalDataDeath() {
+        val httpClient = httpClient()
+        val apiRequest = apiRequest<ApiEndPoints>(httpClient)
+
+        val call = apiRequest.getGlobalDeath()
+
+        call.enqueue(object: Callback<GlobalDeath> {
             override fun onFailure(call: Call<GlobalDeath>, t: Throwable) {
             }
 
             override fun onResponse(call: Call<GlobalDeath>, response: Response<GlobalDeath>) {
-                when {
-                    response.isSuccessful ->
-                        when {
-                            response.body() != null ->
-                                globalDeath = response.body()!!.value
-                        }
+                if (response.isSuccessful){
+                    if(response.body() != null){
+                        globalDeath = response.body()!!.value
+                        setData()
+                    }
                 }
-                setData()
             }
         })
     }
@@ -228,5 +236,14 @@ class DashboardFragment : Fragment() {
         tvPositifGlobalDashboard.text = globalPositif
         tvRecoveredGlobalDashboard.text = globalRecovered
         tvDeathGlobalDashboard.text = globalDeath
+
+        containerDataDashboard.visibility = View.VISIBLE
+        containerShimmerDashboard.visibility = View.GONE
+        containerShimmerDashboard.stopShimmer()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        this.clearFindViewByIdCache()
     }
 }
