@@ -7,17 +7,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.soerjdev.smkcodingproject2.R
+import com.soerjdev.smkcodingproject2.api.ApiEndPoints
+import com.soerjdev.smkcodingproject2.api.apiRequest
+import com.soerjdev.smkcodingproject2.api.httpClient
+import com.soerjdev.smkcodingproject2.model.GlobalDeath
+import com.soerjdev.smkcodingproject2.model.GlobalPositif
+import com.soerjdev.smkcodingproject2.model.GlobalRecovered
 import kotlinx.android.synthetic.main.fragment_world_graph.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.text.NumberFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * A simple [Fragment] subclass.
  */
 class WorldGraphFragment : Fragment() {
+
+    private var positifWorld : String = ""
+    private var recoveredWorld : String = ""
+    private var deathWorld : String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,35 +46,110 @@ class WorldGraphFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        setDataToChart()
+        getWorlDataPositif()
 
         super.onViewCreated(view, savedInstanceState)
     }
 
+    private fun getWorlDataPositif() {
+        val httpClient = httpClient()
+        val apiRequest = apiRequest<ApiEndPoints>(httpClient)
+
+        val call = apiRequest.getGlobalPositif()
+
+        call.enqueue(object : Callback<GlobalPositif> {
+            override fun onFailure(call: Call<GlobalPositif>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<GlobalPositif>, response: Response<GlobalPositif>) {
+                if(response.isSuccessful){
+                    if(response.body() != null){
+                        positifWorld = response.body()!!.value
+                        getWorldDataRecovered()
+                    }
+                }
+            }
+        })
+    }
+
+    private fun getWorldDataRecovered() {
+        val httpClient = httpClient()
+        val apiRequest = apiRequest<ApiEndPoints>(httpClient)
+        val call = apiRequest.getGlobalRecovered()
+
+        call.enqueue(object : Callback<GlobalRecovered>{
+            override fun onFailure(call: Call<GlobalRecovered>, t: Throwable) {
+            }
+
+            override fun onResponse(
+                call: Call<GlobalRecovered>,
+                response: Response<GlobalRecovered>
+            ) {
+                if(response.isSuccessful){
+                    if(response.body() != null){
+                        recoveredWorld = response.body()!!.value
+                        getWorlDataDeath()
+                    }
+                }
+            }
+        })
+    }
+
+    private fun getWorlDataDeath() {
+        val httpClient = httpClient()
+        val apiRequest = apiRequest<ApiEndPoints>(httpClient)
+        val call = apiRequest.getGlobalDeath()
+
+        call.enqueue(object : Callback<GlobalDeath> {
+            override fun onFailure(call: Call<GlobalDeath>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<GlobalDeath>, response: Response<GlobalDeath>) {
+                if(response.isSuccessful){
+                    if(response.body() != null){
+                        deathWorld = response.body()!!.value
+                        setDataToChart()
+                    }
+                }
+            }
+        })
+    }
+
+
     private fun setDataToChart() {
-        val entries : ArrayList<PieEntry> = ArrayList()
+        val entries: ArrayList<PieEntry> = ArrayList()
 
         val pieColor = arrayListOf(
             context?.let {
-                ContextCompat.getColor(it,
+                ContextCompat.getColor(
+                    it,
                     R.color.colorConfirmed
                 )
             },
             context?.let {
-                ContextCompat.getColor(it,
+                ContextCompat.getColor(
+                    it,
                     R.color.colorRecovered
                 )
             },
             context?.let {
-                ContextCompat.getColor(it,
+                ContextCompat.getColor(
+                    it,
                     R.color.colorDeath
                 )
             }
         )
 
-        entries.add(PieEntry(5324124f, "Positif"))
-        entries.add(PieEntry(2398321f, "Sembuh"))
-        entries.add(PieEntry(502185f, "Meninggal"))
+        val positifWorldNum: Int =
+            NumberFormat.getInstance(Locale.getDefault()).parse(positifWorld)?.toInt()!!
+        val recoveredWorldNum: Int =
+            NumberFormat.getInstance(Locale.getDefault()).parse(recoveredWorld)?.toInt()!!
+        val deathWorldNum: Int =
+            NumberFormat.getInstance(Locale.getDefault()).parse(deathWorld)?.toInt()!!
+
+        entries.add(PieEntry(positifWorldNum.toFloat(), "Positif"))
+        entries.add(PieEntry(recoveredWorldNum.toFloat(), "Sembuh"))
+        entries.add(PieEntry(deathWorldNum.toFloat(), "Meninggal"))
 
         val pieDataSet = PieDataSet(entries, "Statistik Dunia")
         pieDataSet.colors = pieColor
@@ -75,6 +167,10 @@ class WorldGraphFragment : Fragment() {
         pieCharWorldGraph.extraTopOffset = -50f
         pieCharWorldGraph.data = pieData
         pieCharWorldGraph.invalidate()
+
+        pbLoadWorldGraph.visibility = View.GONE
+        pieCharWorldGraph.visibility = View.VISIBLE
+        pieCharWorldGraph.animateY(1500, Easing.EaseInOutSine)
     }
 
 }

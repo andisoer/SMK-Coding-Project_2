@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.soerjdev.smkcodingproject2.ProvinsiListAdapter
+import com.soerjdev.smkcodingproject2.adapter.ProvinsiListAdapter
 import com.soerjdev.smkcodingproject2.R
 import com.soerjdev.smkcodingproject2.api.ApiEndPoints
 import com.soerjdev.smkcodingproject2.api.apiRequest
@@ -33,7 +33,11 @@ class AllProvinceDataActivity : AppCompatActivity() {
 
     private fun setData(listData: List<ProvinsiDataItem>) {
         rvAllProvinceData.layoutManager = LinearLayoutManager(this)
-        rvAllProvinceData.adapter = ProvinsiListAdapter(this, listData)
+        rvAllProvinceData.adapter =
+            ProvinsiListAdapter(
+                this,
+                listData
+            )
 
         pbLoadDataProvince.visibility = View.GONE
     }

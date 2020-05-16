@@ -7,17 +7,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.soerjdev.smkcodingproject2.R
+import com.soerjdev.smkcodingproject2.api.ApiEndPoints
+import com.soerjdev.smkcodingproject2.api.apiRequest
+import com.soerjdev.smkcodingproject2.api.httpClient
+import com.soerjdev.smkcodingproject2.model.summaryindodata.SummaryIndoDataItem
 import kotlinx.android.synthetic.main.fragment_indo_graph.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.text.NumberFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * A simple [Fragment] subclass.
  */
 class IndoGraphFragment : Fragment() {
+
+    private var listIndoData : List<SummaryIndoDataItem> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,12 +42,47 @@ class IndoGraphFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        setDataToChart()
+        getIndoData()
 
         super.onViewCreated(view, savedInstanceState)
     }
 
+    private fun getIndoData() {
+        val httpClient = httpClient()
+        val apiRequest = apiRequest<ApiEndPoints>(httpClient)
+
+        val call = apiRequest.getSummaryIndoData()
+        call.enqueue(object : Callback<List<SummaryIndoDataItem>>{
+            override fun onFailure(call: Call<List<SummaryIndoDataItem>>, t: Throwable) {
+            }
+
+            override fun onResponse(
+                call: Call<List<SummaryIndoDataItem>>,
+                response: Response<List<SummaryIndoDataItem>>
+            ) {
+                if (response.isSuccessful){
+                    if(response.body()?.size != 0){
+                        listIndoData = response.body()!!
+                        setDataToChart()
+                    }
+                }
+            }
+
+        })
+    }
+
     private fun setDataToChart() {
+
+        var positifIndo : Int = 0
+        var recoveredIndo : Int = 0
+        var deathIndo : Int = 0
+
+        for (i in listIndoData.indices){
+            positifIndo = NumberFormat.getInstance(Locale.getDefault()).parse(listIndoData[i].positif)?.toInt()!!
+            recoveredIndo = NumberFormat.getInstance(Locale.getDefault()).parse(listIndoData[i].sembuh)?.toInt()!!
+            deathIndo = NumberFormat.getInstance(Locale.getDefault()).parse(listIndoData[i].meninggal)?.toInt()!!
+        }
+
         val entries : ArrayList<PieEntry> = ArrayList()
 
         val pieColor = arrayListOf(
@@ -55,9 +103,9 @@ class IndoGraphFragment : Fragment() {
             }
         )
 
-        entries.add(PieEntry(15321f, "Positif"))
-        entries.add(PieEntry(4412f, "Sembuh"))
-        entries.add(PieEntry(1540f, "Meninggal"))
+        entries.add(PieEntry(positifIndo.toFloat(), "Positif"))
+        entries.add(PieEntry(recoveredIndo.toFloat(), "Sembuh"))
+        entries.add(PieEntry(deathIndo.toFloat(), "Meninggal"))
 
         val pieDataSet = PieDataSet(entries, "Statistik Indonesia")
         pieDataSet.colors = pieColor
@@ -75,6 +123,10 @@ class IndoGraphFragment : Fragment() {
         pieChartIndoGraph.extraTopOffset = -50f
         pieChartIndoGraph.data = pieData
         pieChartIndoGraph.invalidate()
+
+        pbLoadIndoGraph.visibility = View.GONE
+        pieChartIndoGraph.visibility = View.VISIBLE
+        pieChartIndoGraph.animateY(1500, Easing.EaseInOutSine)
     }
 
 }
