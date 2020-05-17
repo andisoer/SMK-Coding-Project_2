@@ -16,4 +16,9 @@
         android:title="Tips"
         android:icon="@drawable/ic_action_info"/>
 
+    <item
+        android:id="@+id/menuProfile"
+        android:title="Profil"
+        android:icon="@drawable/ic_action_person"/>
+
 </menu>

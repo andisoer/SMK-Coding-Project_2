@@ -1,4 +1,4 @@
-package com.soerjdev.smkcodingproject2
+package com.soerjdev.smkcodingproject2.utils
 
 import android.content.Context
 import android.widget.Toast

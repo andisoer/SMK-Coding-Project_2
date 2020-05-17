@@ -1,24 +1,25 @@
-package com.soerjdev.smkcodingproject2
+package com.soerjdev.smkcodingproject2.ui
 
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.soerjdev.smkcodingproject2.MainActivity
+import com.soerjdev.smkcodingproject2.R
+import com.soerjdev.smkcodingproject2.utils.SharedPrefUtil
+import com.soerjdev.smkcodingproject2.utils.showToast
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
 
-    lateinit var sharedPrefConfig : SharedPrefConfig
     lateinit var sharedPreferences : SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        sharedPrefConfig = SharedPrefConfig
-
-        sharedPreferences = getSharedPreferences(sharedPrefConfig.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences(SharedPrefUtil.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
         initView()
     }
@@ -46,14 +47,16 @@ class RegisterActivity : AppCompatActivity() {
         password: String
     ) {
         val editor = sharedPreferences.edit()
-        editor.putString(sharedPrefConfig.TAG_FULLNAME, fullName)
-        editor.putString(sharedPrefConfig.TAG_EMAIL, email)
-        editor.putString(sharedPrefConfig.TAG_PASSWORD, password)
-        editor.putBoolean(sharedPrefConfig.TAG_IS_LOGIN, true)
+        editor.putString(SharedPrefUtil.TAG_FULLNAME, fullName)
+        editor.putString(SharedPrefUtil.TAG_EMAIL, email)
+        editor.putString(SharedPrefUtil.TAG_PASSWORD, password)
         editor.apply()
 
-        showToast(this, "Berhasil mendaftar !")
-        startActivity(Intent(this, MainActivity::class.java))
+        showToast(
+            this,
+            "Berhasil mendaftar, silahkan login"
+        )
+        startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }
 }

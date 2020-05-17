@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.soerjdev.smkcodingproject2.ui.fragment.DashboardFragment
 import com.soerjdev.smkcodingproject2.ui.fragment.GraphFragment
+import com.soerjdev.smkcodingproject2.ui.fragment.ProfileFragment
 import com.soerjdev.smkcodingproject2.ui.fragment.TipsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -28,6 +29,9 @@ class MainActivity : AppCompatActivity()  {
                 }
                 R.id.menuInfo -> {
                     loadFragment(TipsFragment())
+                }
+                R.id.menuProfile -> {
+                    loadFragment(ProfileFragment())
                 } else -> false
             }
         }
