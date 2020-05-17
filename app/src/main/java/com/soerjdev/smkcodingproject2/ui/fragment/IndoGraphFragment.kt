@@ -55,6 +55,8 @@ class IndoGraphFragment : Fragment() {
         val call = apiRequest.getSummaryIndoData()
         call.enqueue(object : Callback<List<SummaryIndoDataItem>>{
             override fun onFailure(call: Call<List<SummaryIndoDataItem>>, t: Throwable) {
+                pbLoadIndoGraph.visibility = View.GONE
+                containerTimeoutIndoGraph.visibility = View.VISIBLE
             }
 
             override fun onResponse(

@@ -18,6 +18,12 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <include
+        android:id="@+id/containerTimeoutDashboard"
+        layout="@layout/layout_timeout"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:visibility="gone"/>
+
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/containerShimmerDashboard"
         android:layout_height="wrap_content"

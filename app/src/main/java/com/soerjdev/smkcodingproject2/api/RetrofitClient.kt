@@ -14,8 +14,8 @@ fun httpClient() : OkHttpClient{
 
     val builder = OkHttpClient.Builder()
 
-    builder.readTimeout(15, TimeUnit.SECONDS)
-    builder.connectTimeout(15, TimeUnit.SECONDS)
+    builder.readTimeout(10, TimeUnit.SECONDS)
+    builder.connectTimeout(10, TimeUnit.SECONDS)
     builder.addInterceptor(logInterceptor)
 
     return builder.build()

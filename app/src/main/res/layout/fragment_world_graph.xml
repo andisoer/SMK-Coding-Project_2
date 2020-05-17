@@ -11,6 +11,11 @@
         android:layout_height="match_parent"
         android:visibility="gone"/>
 
+    <include
+        android:id="@+id/containerTimeoutWorldGraph"
+        layout="@layout/layout_timeout"
+        android:visibility="gone"/>
+
     <ProgressBar
         android:id="@+id/pbLoadWorldGraph"
         android:layout_width="wrap_content"

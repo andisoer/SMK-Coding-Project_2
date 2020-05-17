@@ -74,7 +74,9 @@ class DashboardFragment : Fragment() {
         val call = apiRequest.getSummaryIndoData()
         call.enqueue(object : Callback<List<SummaryIndoDataItem>>{
             override fun onFailure(call: Call<List<SummaryIndoDataItem>>, t: Throwable) {
-
+                containerTimeoutDashboard.visibility = View.VISIBLE
+                containerShimmerDashboard.visibility = View.GONE
+                containerShimmerDashboard.stopShimmer()
             }
 
             override fun onResponse(
@@ -98,6 +100,9 @@ class DashboardFragment : Fragment() {
         val call = apiRequest.getProvinceListData()
         call.enqueue(object : Callback<List<ProvinsiDataItem>>{
             override fun onFailure(call: Call<List<ProvinsiDataItem>>, t: Throwable) {
+                containerTimeoutDashboard.visibility = View.VISIBLE
+                containerShimmerDashboard.visibility = View.GONE
+                containerShimmerDashboard.stopShimmer()
             }
 
             override fun onResponse(
@@ -122,6 +127,9 @@ class DashboardFragment : Fragment() {
 
         call.enqueue(object: Callback<GlobalPositif> {
             override fun onFailure(call: Call<GlobalPositif>, t: Throwable) {
+                containerTimeoutDashboard.visibility = View.VISIBLE
+                containerShimmerDashboard.visibility = View.GONE
+                containerShimmerDashboard.stopShimmer()
             }
 
             override fun onResponse(call: Call<GlobalPositif>, response: Response<GlobalPositif>) {
@@ -143,6 +151,9 @@ class DashboardFragment : Fragment() {
 
         call2.enqueue(object: Callback<GlobalRecovered> {
             override fun onFailure(call: Call<GlobalRecovered>, t: Throwable) {
+                containerTimeoutDashboard.visibility = View.VISIBLE
+                containerShimmerDashboard.visibility = View.GONE
+                containerShimmerDashboard.stopShimmer()
             }
 
             override fun onResponse(
@@ -167,6 +178,9 @@ class DashboardFragment : Fragment() {
 
         call.enqueue(object: Callback<GlobalDeath> {
             override fun onFailure(call: Call<GlobalDeath>, t: Throwable) {
+                containerTimeoutDashboard.visibility = View.VISIBLE
+                containerShimmerDashboard.visibility = View.GONE
+                containerShimmerDashboard.stopShimmer()
             }
 
             override fun onResponse(call: Call<GlobalDeath>, response: Response<GlobalDeath>) {

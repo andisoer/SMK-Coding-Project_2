@@ -20,6 +20,7 @@ import com.soerjdev.smkcodingproject2.model.GlobalDeath
 import com.soerjdev.smkcodingproject2.model.GlobalPositif
 import com.soerjdev.smkcodingproject2.model.GlobalRecovered
 import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.fragment_indo_graph.*
 import kotlinx.android.synthetic.main.fragment_world_graph.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -60,6 +61,8 @@ class WorldGraphFragment : Fragment() {
 
         call.enqueue(object : Callback<GlobalPositif> {
             override fun onFailure(call: Call<GlobalPositif>, t: Throwable) {
+                pbLoadWorldGraph.visibility = View.GONE
+                containerTimeoutWorldGraph.visibility = View.VISIBLE
             }
 
             override fun onResponse(call: Call<GlobalPositif>, response: Response<GlobalPositif>) {
@@ -80,6 +83,8 @@ class WorldGraphFragment : Fragment() {
 
         call.enqueue(object : Callback<GlobalRecovered>{
             override fun onFailure(call: Call<GlobalRecovered>, t: Throwable) {
+                pbLoadWorldGraph.visibility = View.GONE
+                containerTimeoutWorldGraph.visibility = View.VISIBLE
             }
 
             override fun onResponse(
@@ -103,6 +108,8 @@ class WorldGraphFragment : Fragment() {
 
         call.enqueue(object : Callback<GlobalDeath> {
             override fun onFailure(call: Call<GlobalDeath>, t: Throwable) {
+                pbLoadWorldGraph.visibility = View.GONE
+                containerTimeoutWorldGraph.visibility = View.VISIBLE
             }
 
             override fun onResponse(call: Call<GlobalDeath>, response: Response<GlobalDeath>) {
