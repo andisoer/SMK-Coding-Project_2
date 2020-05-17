@@ -1,4 +1,4 @@
-package com.soerjdev.smkcodingproject2.ui
+package com.soerjdev.smkcodingproject2.ui.fragment
 
 import android.graphics.Color
 import android.os.Bundle

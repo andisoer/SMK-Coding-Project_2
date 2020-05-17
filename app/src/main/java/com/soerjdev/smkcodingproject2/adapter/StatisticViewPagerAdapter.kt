@@ -2,8 +2,8 @@ package com.soerjdev.smkcodingproject2.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.soerjdev.smkcodingproject2.ui.IndoGraphFragment
-import com.soerjdev.smkcodingproject2.ui.WorldGraphFragment
+import com.soerjdev.smkcodingproject2.ui.fragment.IndoGraphFragment
+import com.soerjdev.smkcodingproject2.ui.fragment.WorldGraphFragment
 
 class StatisticViewPagerAdapter(fragment : Fragment) : FragmentStateAdapter(fragment) {
 
