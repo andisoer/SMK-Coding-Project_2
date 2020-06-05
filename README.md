@@ -1,5 +1,5 @@
 # SMK-Coding-Project_2
-Submission for SMK Coding Phase 2, COVID-19 monitoring application based on nasional, province, and world data using : 
+Submission for SMK Coding Phase 2, COVID-19 monitoring application based on national, province, and world data using : 
 * ViewPager
 * Fragment
 * Public REST Api
