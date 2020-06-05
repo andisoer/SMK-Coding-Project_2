@@ -10,7 +10,7 @@ Submission for SMK Coding Phase 2, COVID-19 monitoring application based on nasi
 ![Preview Image 2](https://github.com/andisoer/SMK-Coding-Project_2/blob/master/screenshots/overview2.png)
 ![Preview Image 3](https://github.com/andisoer/SMK-Coding-Project_2/blob/master/screenshots/overview3.png)
 
-## Link download application
+## Download Link APK
 * [Google Drive](https://drive.google.com/open?id=1pIncrLH2STWu9hUTo8TvAu-SyQo2yYd2)
 
 ## Library used
