@@ -153,7 +153,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+            app:layout_constraintTop_toBottomOf="@+id/btnSignInGoogle">
 
             <com.facebook.login.widget.LoginButton
                 android:id="@+id/btnLoginFacebook"
@@ -162,44 +162,33 @@
                 android:visibility="gone" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLoginFacebook2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                app:icon="@drawable/ic_facebook"
                 android:text="@string/masuk_dengan_facebook"
                 android:textColor="@android:color/white"
-                app:backgroundTint="@color/SignInTextFacebook" />
+                app:backgroundTint="@color/SignInTextFacebook"
+                app:icon="@drawable/ic_facebook" />
 
         </FrameLayout>
 
-        <FrameLayout
-            android:id="@+id/frameLayout"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSignInGoogle"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/masuk_dengan_google"
+            android:textColor="@color/SignInTextGoogle"
+            app:backgroundTint="@android:color/white"
+            app:icon="@drawable/ic_google"
+            app:iconTintMode="multiply"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
-
-            <com.google.android.gms.common.SignInButton
-                android:id="@+id/btnLoginGoogle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone" />
-
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:text="@string/masuk_dengan_google"
-                android:textColor="@color/SignInTextGoogle"
-                app:backgroundTint="@android:color/white"
-                app:icon="@drawable/ic_google"
-                app:iconTintMode="multiply"/>
-
-        </FrameLayout>
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

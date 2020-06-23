@@ -5,7 +5,13 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.soerjdev.smkcodingproject2.MainActivity
 import com.soerjdev.smkcodingproject2.R
 import com.soerjdev.smkcodingproject2.utils.SharedPrefUtil
@@ -17,23 +23,36 @@ class LoginActivity : AppCompatActivity() {
 
     lateinit var sharedPreferences : SharedPreferences
     lateinit var gso : GoogleSignInOptions
+    lateinit var googleSignInClient: GoogleSignInClient
+    lateinit var auth : FirebaseAuth
+
+    val TAG = LoginActivity::class.java.name
+
+    companion object {
+        const val REQ_CODE_GOOGLE_AUTH = 50
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        /* Setup Google Sign In */
         gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
 
-        sharedPreferences = getSharedPreferences(SharedPrefUtil.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
-        val isLogin = sharedPreferences.getBoolean(SharedPrefUtil.TAG_IS_LOGIN, false)
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        if (isLogin){
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }
+        auth = FirebaseAuth.getInstance()
+
+//        sharedPreferences = getSharedPreferences(SharedPrefUtil.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
+//        val isLogin = sharedPreferences.getBoolean(SharedPrefUtil.TAG_IS_LOGIN, false)
+//
+//        if (isLogin){
+//            startActivity(Intent(this, MainActivity::class.java))
+//            finish()
+//        }
 
         initView()
     }
@@ -48,6 +67,27 @@ class LoginActivity : AppCompatActivity() {
             validateForm()
         }
 
+        btnSignInGoogle.setOnClickListener {
+            signInWithGoogle()
+        }
+
+        btnLoginFacebook2.setOnClickListener {
+            btnLoginFacebook.performClick()
+        }
+
+        btnLoginFacebook.setOnClickListener {
+            signInWithFacebook()
+        }
+
+    }
+
+    private fun signInWithFacebook() {
+        Log.d(TAG, "sign in with facebook button clicked !")
+    }
+
+    private fun signInWithGoogle() {
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, REQ_CODE_GOOGLE_AUTH)
     }
 
     private fun validateForm() {
@@ -57,28 +97,70 @@ class LoginActivity : AppCompatActivity() {
         when {
             email.isEmpty() -> tieEmailLogin.error = "Isi email anda !"
             password.isEmpty() -> tiePasswordLogin.error = "Isi kata sandi anda !"
-            else -> checkPrefData(email, password)
+//            else -> checkPrefData(email, password)
         }
     }
 
-    private fun checkPrefData(email : String, password : String) {
-        val emailPref = sharedPreferences.getString(SharedPrefUtil.TAG_EMAIL, null)
-        val passwordPref = sharedPreferences.getString(SharedPrefUtil.TAG_PASSWORD, null)
+//    private fun checkPrefData(email : String, password : String) {
+//        val emailPref = sharedPreferences.getString(SharedPrefUtil.TAG_EMAIL, null)
+//        val passwordPref = sharedPreferences.getString(SharedPrefUtil.TAG_PASSWORD, null)
+//
+//        if(emailPref.equals(email) && passwordPref.equals(password)){
+//
+//            val editor = sharedPreferences.edit()
+//            editor.putBoolean(SharedPrefUtil.TAG_IS_LOGIN, true)
+//            editor.apply()
+//
+//            startActivity(Intent(this, MainActivity::class.java))
+//            finish()
+//        }else{
+//            showToast(
+//                this,
+//                "User tidak ditemukan, silahkan mendaftar"
+//            )
+//        }
+//    }
 
-        if(emailPref.equals(email) && passwordPref.equals(password)){
+    private fun authWithGoogle(idToken: String?) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this){ task ->
+                if(task.isSuccessful){
+                    Log.d(TAG, "Auth complete")
+                    Log.d(TAG, "User : "+auth.currentUser?.displayName)
+                }else{
+                    Log.e(TAG, "Failed to authenticate : "+task.exception)
+                }
+            }
+    }
 
-            val editor = sharedPreferences.edit()
-            editor.putBoolean(SharedPrefUtil.TAG_IS_LOGIN, true)
-            editor.apply()
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }else{
-            showToast(
-                this,
-                "User tidak ditemukan, silahkan mendaftar"
-            )
+        if(requestCode == REQ_CODE_GOOGLE_AUTH){
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+
+            try {
+                val account = task.getResult(ApiException::class.java)
+                Log.d(TAG, "account signed : "+account?.id)
+                authWithGoogle(account?.idToken)
+            }catch (e: ApiException){
+                Log.e(TAG, "error on sign in : "+e.message)
+            }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val currentUser = auth.currentUser
+        if(currentUser != null){
+            intentToMain()
+        }
+    }
+
+    private fun intentToMain() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     override fun onDestroy() {

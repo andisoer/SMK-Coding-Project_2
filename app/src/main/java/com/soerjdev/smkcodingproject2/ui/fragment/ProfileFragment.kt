@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
 import com.soerjdev.smkcodingproject2.R
 import com.soerjdev.smkcodingproject2.ui.LoginActivity
 import com.soerjdev.smkcodingproject2.utils.SharedPrefUtil
@@ -22,6 +23,7 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 class ProfileFragment : Fragment() {
 
     lateinit var sharedPreferences : SharedPreferences
+    lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +40,8 @@ class ProfileFragment : Fragment() {
 
     private fun initView() {
 
+        auth = FirebaseAuth.getInstance()
+
         btnLogout.setOnClickListener {
             showLogoutDialog()
         }
@@ -50,7 +54,7 @@ class ProfileFragment : Fragment() {
             showAboutMeDialog()
         }
 
-        getPrefData()
+        setData(null, null)
     }
 
     private fun showAboutMeDialog() {
@@ -86,11 +90,18 @@ class ProfileFragment : Fragment() {
                 dialogInterface.dismiss()
             }
             .setPositiveButton("Ya") { _, _ ->
-                clearPrefData()
+                logout()
+//                clearPrefData()
             }
 
         alertDialogBuilder.show()
 
+    }
+
+    private fun logout() {
+        auth.signOut()
+        activity?.startActivity(Intent(activity, LoginActivity::class.java))
+        activity?.finish()
     }
 
     private fun getPrefData() {
@@ -103,8 +114,8 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setData(fullName: String?, email: String?) {
-        tvNameUserProfile.text = fullName
-        tvEmailUserProfile.text = email
+        tvNameUserProfile.text = auth.currentUser?.displayName
+        tvEmailUserProfile.text = auth.currentUser?.email
     }
 
     private fun clearPrefData() {
