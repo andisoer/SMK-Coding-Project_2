@@ -7,6 +7,9 @@
     <color name="colorWhiteDark">#F8F8F8</color>
     <color name="colorGrey">#808080</color>
 
+    <color name="SignInTextGoogle">#757575</color>
+    <color name="SignInTextFacebook">#3B5998</color>
+
     <color name="colorDeath">#F76353</color>
     <color name="colorRecovered">#00CC99</color>
     <color name="colorConfirmed">#F2B900</color>

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.soerjdev.smkcodingproject2.MainActivity
 import com.soerjdev.smkcodingproject2.R
 import com.soerjdev.smkcodingproject2.utils.SharedPrefUtil
@@ -15,10 +16,16 @@ import kotlinx.android.synthetic.main.activity_login.*
 class LoginActivity : AppCompatActivity() {
 
     lateinit var sharedPreferences : SharedPreferences
+    lateinit var gso : GoogleSignInOptions
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
 
         sharedPreferences = getSharedPreferences(SharedPrefUtil.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
         val isLogin = sharedPreferences.getBoolean(SharedPrefUtil.TAG_IS_LOGIN, false)

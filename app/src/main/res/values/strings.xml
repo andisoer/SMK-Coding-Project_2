@@ -104,4 +104,9 @@ Jika Anda merasa suatu permukaan mungkin terinfeksi, bersihkanlah dengan disinfe
 Apa pun keadaannya, jika Anda mengalami demam, batuk dan kesulitan bernapas, segeralah mencari pertolongan medis untuk mengurangi risiko terkena infeksi yang lebih parah dan sampaikan riwayat perjalanan Anda baru-baru ini kepada tenaga kesehatan.</item>
     </string-array>
 
+    <string name="facebook_app_id">2633641166899312</string>
+    <string name="fb_login_protocol_scheme">fb2633641166899312</string>
+    <string name="masuk_dengan_google">Masuk dengan Google</string>
+    <string name="masuk_dengan_facebook">Masuk dengan Facebook</string>
+
 </resources>

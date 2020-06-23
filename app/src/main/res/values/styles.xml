@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="GoogleButton">
+        <item name="drawableStartCompat">@drawable/fui_ic_googleg_color_24dp</item>
+        <item name="android:background">@drawable/fui_idp_button_background_google</item>
+        <item name="android:textColor">#757575</item>
+    </style>
+
 </resources>
