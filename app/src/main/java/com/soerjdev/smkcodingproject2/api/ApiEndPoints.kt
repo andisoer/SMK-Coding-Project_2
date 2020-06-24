@@ -40,13 +40,13 @@ interface ApiEndPoints {
     fun getProvData(): Call<ProvData>
 
     @GET("confirmed")
-    fun getWorldConfirmedData(): Call<GlobalCasesItem>
+    fun getWorldConfirmedData(): Call<List<GlobalCasesItem>>
 
     @GET("recovered")
-    fun getWorldRecoveredData(): Call<GlobalCasesItem>
+    fun getWorldRecoveredData(): Call<List<GlobalCasesItem>>
 
     @GET("deaths")
-    fun getWorldDeathData(): Call<GlobalCasesItem>
+    fun getWorldDeathData(): Call<List<GlobalCasesItem>>
 
     @GET(".")
     fun getWorldSummaryData(): Call<GlobalCasesSummary>

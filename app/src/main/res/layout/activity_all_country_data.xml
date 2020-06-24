@@ -17,6 +17,8 @@
             android:layout_height="?attr/actionBarSize"
             app:title="Data Seluruh Negara"
             app:layout_scrollFlags="snap|enterAlways|scroll"
+            app:menu="@menu/menu_filter_country_list"
+            app:navigationIcon="@drawable/ic_action_arrow_back"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
 
     </com.google.android.material.appbar.AppBarLayout>

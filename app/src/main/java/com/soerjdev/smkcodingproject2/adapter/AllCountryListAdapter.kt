@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.soerjdev.smkcodingproject2.R
+import com.soerjdev.smkcodingproject2.model.globalcases.GlobalCasesItem
 import com.soerjdev.smkcodingproject2.model.globaldata.GlobalDataItem
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.layout_item_country_data.*
@@ -13,7 +14,7 @@ import java.text.NumberFormat
 import java.util.*
 
 class AllCountryListAdapter(private val context: Context,
-                            private val listCountryDataActivity: List<GlobalDataItem>) :
+                            private val listCountryDataActivity: List<GlobalCasesItem>) :
     RecyclerView.Adapter<AllCountryListAdapter.ViewHolder> (){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -34,15 +35,15 @@ class AllCountryListAdapter(private val context: Context,
     }
 
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
-        fun bindItem(item: GlobalDataItem){
+        fun bindItem(item: GlobalCasesItem){
 
-            tvNameItemCountryData.text = item.attributes.countryRegion
+            tvNameItemCountryData.text = item.combinedKey
             tvPositifItemCountryData.text = NumberFormat.getInstance(Locale.getDefault()).
-                                            format(item.attributes.confirmed)
+                                            format(item.confirmed)
             tvRecoveredItemCountryData.text = NumberFormat.getInstance(Locale.getDefault()).
-                                                format(item.attributes.recovered)
+                                                format(item.recovered)
             tvDeathItemCountryData.text = NumberFormat.getInstance(Locale.getDefault()).
-                                                format(item.attributes.deaths)
+                                                format(item.deaths)
 
         }
     }

@@ -108,5 +108,6 @@ Apa pun keadaannya, jika Anda mengalami demam, batuk dan kesulitan bernapas, seg
     <string name="fb_login_protocol_scheme">fb2633641166899312</string>
     <string name="masuk_dengan_google">Masuk dengan Google</string>
     <string name="masuk_dengan_facebook">Masuk dengan Facebook</string>
+    <string name="urutkan_data">Urutkan data</string>
 
 </resources>
