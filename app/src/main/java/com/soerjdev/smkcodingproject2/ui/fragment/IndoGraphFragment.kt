@@ -17,6 +17,7 @@ import com.soerjdev.smkcodingproject2.api.ApiEndPoints
 import com.soerjdev.smkcodingproject2.api.apiRequest
 import com.soerjdev.smkcodingproject2.api.httpClient
 import com.soerjdev.smkcodingproject2.model.summaryindodata.SummaryIndoDataItem
+import com.soerjdev.smkcodingproject2.model.updatedata.UpdateData
 import com.soerjdev.smkcodingproject2.utils.ApiUtils
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_indo_graph.*
@@ -33,6 +34,8 @@ import kotlin.collections.ArrayList
 class IndoGraphFragment : Fragment() {
 
     private var listIndoData : List<SummaryIndoDataItem> = ArrayList()
+
+    private lateinit var updateData: UpdateData
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,39 +56,54 @@ class IndoGraphFragment : Fragment() {
         val httpClient = httpClient()
         val apiRequest = apiRequest<ApiEndPoints>(httpClient, ApiUtils.URL_COVID_GOV)
 
-        val call = apiRequest.getSummaryIndoData()
-        call.enqueue(object : Callback<List<SummaryIndoDataItem>>{
-            override fun onFailure(call: Call<List<SummaryIndoDataItem>>, t: Throwable) {
+        val call = apiRequest.getUpdateData()
+        call.enqueue(object : Callback<UpdateData> {
+            override fun onFailure(call: Call<UpdateData>, t: Throwable) {
                 pbLoadIndoGraph.visibility = View.GONE
                 containerTimeoutIndoGraph.visibility = View.VISIBLE
             }
-
-            override fun onResponse(
-                call: Call<List<SummaryIndoDataItem>>,
-                response: Response<List<SummaryIndoDataItem>>
-            ) {
-                if (response.isSuccessful){
-                    if(response.body()?.size != 0){
-                        listIndoData = response.body()!!
+            override fun onResponse(call: Call<UpdateData>, response: Response<UpdateData>) {
+                if(response.isSuccessful){
+                    if(response.body() != null){
+                        updateData = response.body()!!
                         setDataToChart()
                     }
                 }
             }
-
         })
+//        val call = apiRequest.getSummaryIndoData()
+//        call.enqueue(object : Callback<List<SummaryIndoDataItem>>{
+//            override fun onFailure(call: Call<List<SummaryIndoDataItem>>, t: Throwable) {
+//                pbLoadIndoGraph.visibility = View.GONE
+//                containerTimeoutIndoGraph.visibility = View.VISIBLE
+//            }
+//
+//            override fun onResponse(
+//                call: Call<List<SummaryIndoDataItem>>,
+//                response: Response<List<SummaryIndoDataItem>>
+//            ) {
+//                if (response.isSuccessful){
+//                    if(response.body()?.size != 0){
+//                        listIndoData = response.body()!!
+//                        setDataToChart()
+//                    }
+//                }
+//            }
+//
+//        })
     }
 
     private fun setDataToChart() {
 
-        var positifIndo : Int = 0
-        var recoveredIndo : Int = 0
-        var deathIndo : Int = 0
+        val positifIndo = updateData.update.total.jumlahPositif
+        val recoveredIndo = updateData.update.total.jumlahPositif
+        val deathIndo = updateData.update.total.jumlahMeninggal
 
-        for (i in listIndoData.indices){
-            positifIndo = NumberFormat.getInstance(Locale.getDefault()).parse(listIndoData[i].positif)?.toInt()!!
-            recoveredIndo = NumberFormat.getInstance(Locale.getDefault()).parse(listIndoData[i].sembuh)?.toInt()!!
-            deathIndo = NumberFormat.getInstance(Locale.getDefault()).parse(listIndoData[i].meninggal)?.toInt()!!
-        }
+//        for (i in listIndoData.indices){
+//            positifIndo = NumberFormat.getInstance(Locale.getDefault()).parse(listIndoData[i].positif)?.toInt()!!
+//            recoveredIndo = NumberFormat.getInstance(Locale.getDefault()).parse(listIndoData[i].sembuh)?.toInt()!!
+//            deathIndo = NumberFormat.getInstance(Locale.getDefault()).parse(listIndoData[i].meninggal)?.toInt()!!
+//        }
 
         val entries : ArrayList<PieEntry> = ArrayList()
 
