@@ -22,12 +22,12 @@ fun httpClient() : OkHttpClient{
 
 }
 
-inline fun <reified T> apiRequest(okHttpClient: OkHttpClient):T {
+inline fun <reified T> apiRequest(okHttpClient: OkHttpClient, url: String):T {
 
     val gson = GsonBuilder().create()
 
     val retrofit = Retrofit.Builder()
-        .baseUrl("https://api.kawalcorona.com/")
+        .baseUrl(url)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create(gson))
         .build()

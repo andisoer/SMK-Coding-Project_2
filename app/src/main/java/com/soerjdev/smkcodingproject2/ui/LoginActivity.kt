@@ -56,8 +56,8 @@ class LoginActivity : AppCompatActivity() {
 
         callbackManager = CallbackManager.Factory.create()
 
-//        sharedPreferences = getSharedPreferences(SharedPrefUtil.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
-//        val isLogin = sharedPreferences.getBoolean(SharedPrefUtil.TAG_IS_LOGIN, false)
+//        sharedPreferences = getSharedPreferences(SharedPrefUtils.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
+//        val isLogin = sharedPreferences.getBoolean(SharedPrefUtils.TAG_IS_LOGIN, false)
 //
 //        if (isLogin){
 //            startActivity(Intent(this, MainActivity::class.java))
@@ -137,13 +137,13 @@ class LoginActivity : AppCompatActivity() {
     }
 
 //    private fun checkPrefData(email : String, password : String) {
-//        val emailPref = sharedPreferences.getString(SharedPrefUtil.TAG_EMAIL, null)
-//        val passwordPref = sharedPreferences.getString(SharedPrefUtil.TAG_PASSWORD, null)
+//        val emailPref = sharedPreferences.getString(SharedPrefUtils.TAG_EMAIL, null)
+//        val passwordPref = sharedPreferences.getString(SharedPrefUtils.TAG_PASSWORD, null)
 //
 //        if(emailPref.equals(email) && passwordPref.equals(password)){
 //
 //            val editor = sharedPreferences.edit()
-//            editor.putBoolean(SharedPrefUtil.TAG_IS_LOGIN, true)
+//            editor.putBoolean(SharedPrefUtils.TAG_IS_LOGIN, true)
 //            editor.apply()
 //
 //            startActivity(Intent(this, MainActivity::class.java))

@@ -1,6 +1,6 @@
 package com.soerjdev.smkcodingproject2.utils
 
-object SharedPrefUtil {
+object SharedPrefUtils {
     const val SHARED_PREFERENCES_NAME = "ProfilPref"
     const val TAG_EMAIL = "email"
     const val TAG_FULLNAME = "fullName"

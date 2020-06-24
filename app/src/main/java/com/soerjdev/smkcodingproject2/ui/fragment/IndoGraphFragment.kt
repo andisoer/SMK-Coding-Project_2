@@ -17,6 +17,7 @@ import com.soerjdev.smkcodingproject2.api.ApiEndPoints
 import com.soerjdev.smkcodingproject2.api.apiRequest
 import com.soerjdev.smkcodingproject2.api.httpClient
 import com.soerjdev.smkcodingproject2.model.summaryindodata.SummaryIndoDataItem
+import com.soerjdev.smkcodingproject2.utils.ApiUtils
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_indo_graph.*
 import retrofit2.Call
@@ -50,7 +51,7 @@ class IndoGraphFragment : Fragment() {
 
     private fun getIndoData() {
         val httpClient = httpClient()
-        val apiRequest = apiRequest<ApiEndPoints>(httpClient)
+        val apiRequest = apiRequest<ApiEndPoints>(httpClient, ApiUtils.URL_COVID_GOV)
 
         val call = apiRequest.getSummaryIndoData()
         call.enqueue(object : Callback<List<SummaryIndoDataItem>>{

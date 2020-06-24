@@ -5,9 +5,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.soerjdev.smkcodingproject2.MainActivity
 import com.soerjdev.smkcodingproject2.R
-import com.soerjdev.smkcodingproject2.utils.SharedPrefUtil
+import com.soerjdev.smkcodingproject2.utils.SharedPrefUtils
 import com.soerjdev.smkcodingproject2.utils.showToast
 import kotlinx.android.synthetic.main.activity_register.*
 
@@ -19,7 +18,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        sharedPreferences = getSharedPreferences(SharedPrefUtil.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences(SharedPrefUtils.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
         initView()
     }
@@ -47,9 +46,9 @@ class RegisterActivity : AppCompatActivity() {
         password: String
     ) {
         val editor = sharedPreferences.edit()
-        editor.putString(SharedPrefUtil.TAG_FULLNAME, fullName)
-        editor.putString(SharedPrefUtil.TAG_EMAIL, email)
-        editor.putString(SharedPrefUtil.TAG_PASSWORD, password)
+        editor.putString(SharedPrefUtils.TAG_FULLNAME, fullName)
+        editor.putString(SharedPrefUtils.TAG_EMAIL, email)
+        editor.putString(SharedPrefUtils.TAG_PASSWORD, password)
         editor.apply()
 
         showToast(

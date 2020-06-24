@@ -10,6 +10,7 @@ import com.soerjdev.smkcodingproject2.api.ApiEndPoints
 import com.soerjdev.smkcodingproject2.api.apiRequest
 import com.soerjdev.smkcodingproject2.api.httpClient
 import com.soerjdev.smkcodingproject2.model.globaldata.GlobalDataItem
+import com.soerjdev.smkcodingproject2.utils.ApiUtils
 import kotlinx.android.synthetic.main.activity_all_country_data.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -43,7 +44,7 @@ class AllCountryDataActivity : AppCompatActivity() {
 
     private fun getAllCountryData() {
         val httpClient = httpClient()
-        val apiRequest = apiRequest<ApiEndPoints>(httpClient)
+        val apiRequest = apiRequest<ApiEndPoints>(httpClient, ApiUtils.URL_COVID_GOV)
 
         val call = apiRequest.getGlobalListData()
         call.enqueue(object : Callback<List<GlobalDataItem>> {

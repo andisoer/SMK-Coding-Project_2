@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.soerjdev.smkcodingproject2.R
+import com.soerjdev.smkcodingproject2.model.provdata.Data
 import com.soerjdev.smkcodingproject2.model.provinsidata.ProvinsiDataItem
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.layout_item_province_data.*
@@ -13,7 +14,7 @@ import java.text.NumberFormat
 import java.util.*
 
 class ProvinsiListAdapter (private val context: Context,
-                           private val listProvinsiData: List<ProvinsiDataItem>) :
+                           private val listProvinsiData: List<Data>) :
     RecyclerView.Adapter<ProvinsiListAdapter.ViewHolder> (){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -34,15 +35,15 @@ class ProvinsiListAdapter (private val context: Context,
     }
 
     class ViewHolder (override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
-        fun bindItem(item: ProvinsiDataItem){
+        fun bindItem(item: Data){
 
-            tvNameItemProvinceData.text = item.attributes.provinsi
+            tvNameItemProvinceData.text = item.key
             tvPositifItemProvinceData.text = NumberFormat.getInstance(Locale.getDefault()).
-            format(item.attributes.kasusPosi)
+            format(item.jumlahKasus)
             tvRecoveredItemProvinceData.text = NumberFormat.getInstance(Locale.getDefault()).
-            format(item.attributes.kasusSemb)
+            format(item.jumlahSembuh)
             tvDeathItemProvinceData.text = NumberFormat.getInstance(Locale.getDefault()).
-            format(item.attributes.kasusMeni)
+            format(item.jumlahMeninggal)
         }
     }
 }

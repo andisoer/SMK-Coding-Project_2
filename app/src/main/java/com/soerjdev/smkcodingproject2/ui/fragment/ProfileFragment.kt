@@ -12,7 +12,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.soerjdev.smkcodingproject2.R
 import com.soerjdev.smkcodingproject2.ui.LoginActivity
-import com.soerjdev.smkcodingproject2.utils.SharedPrefUtil
+import com.soerjdev.smkcodingproject2.utils.SharedPrefUtils
 import com.soerjdev.smkcodingproject2.utils.showToast
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -105,10 +105,10 @@ class ProfileFragment : Fragment() {
     }
 
     private fun getPrefData() {
-        sharedPreferences = context!!.getSharedPreferences(SharedPrefUtil.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
+        sharedPreferences = context!!.getSharedPreferences(SharedPrefUtils.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
-        val fullName = sharedPreferences.getString(SharedPrefUtil.TAG_FULLNAME, null)
-        val email = sharedPreferences.getString(SharedPrefUtil.TAG_EMAIL, null)
+        val fullName = sharedPreferences.getString(SharedPrefUtils.TAG_FULLNAME, null)
+        val email = sharedPreferences.getString(SharedPrefUtils.TAG_EMAIL, null)
 
         setData(fullName, email)
     }
@@ -120,7 +120,7 @@ class ProfileFragment : Fragment() {
 
     private fun clearPrefData() {
         val editor = sharedPreferences.edit()
-        editor.putBoolean(SharedPrefUtil.TAG_IS_LOGIN, false)
+        editor.putBoolean(SharedPrefUtils.TAG_IS_LOGIN, false)
         editor.apply()
 
         showToast(context!!, "Berhasil keluar, silahkan login")

@@ -19,6 +19,7 @@ import com.soerjdev.smkcodingproject2.api.httpClient
 import com.soerjdev.smkcodingproject2.model.GlobalDeath
 import com.soerjdev.smkcodingproject2.model.GlobalPositif
 import com.soerjdev.smkcodingproject2.model.GlobalRecovered
+import com.soerjdev.smkcodingproject2.utils.ApiUtils
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_indo_graph.*
 import kotlinx.android.synthetic.main.fragment_world_graph.*
@@ -55,7 +56,7 @@ class WorldGraphFragment : Fragment() {
 
     private fun getWorlDataPositif() {
         val httpClient = httpClient()
-        val apiRequest = apiRequest<ApiEndPoints>(httpClient)
+        val apiRequest = apiRequest<ApiEndPoints>(httpClient, ApiUtils.URL_COVID_GOV)
 
         val call = apiRequest.getGlobalPositif()
 
@@ -78,7 +79,7 @@ class WorldGraphFragment : Fragment() {
 
     private fun getWorldDataRecovered() {
         val httpClient = httpClient()
-        val apiRequest = apiRequest<ApiEndPoints>(httpClient)
+        val apiRequest = apiRequest<ApiEndPoints>(httpClient, ApiUtils.URL_COVID_GOV)
         val call = apiRequest.getGlobalRecovered()
 
         call.enqueue(object : Callback<GlobalRecovered>{
@@ -103,7 +104,7 @@ class WorldGraphFragment : Fragment() {
 
     private fun getWorlDataDeath() {
         val httpClient = httpClient()
-        val apiRequest = apiRequest<ApiEndPoints>(httpClient)
+        val apiRequest = apiRequest<ApiEndPoints>(httpClient, ApiUtils.URL_COVID_GOV)
         val call = apiRequest.getGlobalDeath()
 
         call.enqueue(object : Callback<GlobalDeath> {
