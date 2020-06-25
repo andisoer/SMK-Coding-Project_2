@@ -32,8 +32,10 @@
             android:padding="16dp">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilNameAddPlaceHistory"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tieNameAddPlaceHistory"
@@ -45,9 +47,11 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilAddressAddPlaceHistory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="4dp"
+                app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tieAddressAddPlaceHistory"
@@ -62,13 +66,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Atau pilih pada peta"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="2dp"
                 style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilCategoryAddPlaceHistory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="16dp"
+                app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tieCategoryAddPlaceHistory"
@@ -79,9 +85,11 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilDateAddPlaceHistory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="4dp"
+                app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tieDateAddPlaceHistory"
@@ -96,7 +104,7 @@
                 android:id="@+id/btnAddPlaceHistory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="Tambah Riwayat"
                 android:padding="16dp"/>
 
