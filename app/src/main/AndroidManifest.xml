@@ -12,8 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PlaceHistoryListActivity"></activity>
-        <activity android:name=".AddPlaceHistoryActivity" />
+        <activity android:name=".ui.PlaceHistoryListActivity"></activity>
+        <activity android:name=".ui.AddPlaceHistoryActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
