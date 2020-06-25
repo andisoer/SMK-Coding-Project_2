@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
+import com.soerjdev.smkcodingproject2.PlaceHistoryListActivity
 import com.soerjdev.smkcodingproject2.R
 import com.soerjdev.smkcodingproject2.ui.LoginActivity
 import com.soerjdev.smkcodingproject2.utils.SharedPrefUtils
@@ -52,6 +53,10 @@ class ProfileFragment : Fragment() {
 
         containerAboutMe.setOnClickListener {
             showAboutMeDialog()
+        }
+
+        containerPlaceHistory.setOnClickListener {
+            activity?.startActivity(Intent(activity!!, PlaceHistoryListActivity::class.java))
         }
 
         setData(null, null)

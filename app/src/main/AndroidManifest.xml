@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".PlaceHistoryListActivity"></activity>
-        <activity android:name=".PlaceHistoryActivity" />
+        <activity android:name=".AddPlaceHistoryActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
