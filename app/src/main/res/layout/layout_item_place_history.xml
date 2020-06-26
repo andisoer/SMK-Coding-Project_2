@@ -8,61 +8,79 @@
     android:layout_marginHorizontal="8dp"
     android:layout_marginVertical="4dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="8dp">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvContainerTypePlaceHistory"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            app:cardElevation="0dp"
-            app:cardCornerRadius="8dp"
-            app:cardBackgroundColor="#FD9A38">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
-
-                <ImageView
-                    android:id="@+id/ivTypePlaceHistory"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_action_school"/>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:layout_marginStart="8dp">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
 
-            <TextView
-                android:id="@+id/tvPlaceNameItemPlaceHistory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nama Lokasi"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:textStyle="bold"/>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvContainerTypePlaceHistory"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="8dp"
+                app:cardBackgroundColor="#FD9A38">
 
-            <TextView
-                android:id="@+id/tvAddresItemPlaceHistory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:text="Jl. Alamat lokasi No 324, Nama Kecamatan"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/ivTypePlaceHistory"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_action_school"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.9"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:id="@+id/tvPlaceNameItemPlaceHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Nama Lokasi"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvAddresItemPlaceHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:text="Jl. Alamat lokasi No 324, Nama Kecamatan"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/ivMoreItemPlaceHistory"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_action_more_vert"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="10dp"/>
+
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

@@ -1,6 +1,7 @@
 package com.soerjdev.smkcodingproject2
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +30,10 @@ class PlaceHistoryAdapter (private val context: Context,
         fun bindItem(item: PlaceHistory){
             tvPlaceNameItemPlaceHistory.text = item.placeName
             tvAddresItemPlaceHistory.text = item.placeAddres
+
+            ivMoreItemPlaceHistory.setOnClickListener {
+                Log.d("wdqwd", "Wdqwd : "+item.placeName)
+            }
         }
     }
 
