@@ -12,6 +12,7 @@ import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.PercentFormatter
 import com.soerjdev.smkcodingproject2.R
 import com.soerjdev.smkcodingproject2.api.ApiEndPoints
 import com.soerjdev.smkcodingproject2.api.apiRequest
@@ -68,26 +69,6 @@ class IndoGraphFragment : Fragment() {
                 }
             }
         })
-//        val call = apiRequest.getSummaryIndoData()
-//        call.enqueue(object : Callback<List<SummaryIndoDataItem>>{
-//            override fun onFailure(call: Call<List<SummaryIndoDataItem>>, t: Throwable) {
-//                pbLoadIndoGraph.visibility = View.GONE
-//                containerTimeoutIndoGraph.visibility = View.VISIBLE
-//            }
-//
-//            override fun onResponse(
-//                call: Call<List<SummaryIndoDataItem>>,
-//                response: Response<List<SummaryIndoDataItem>>
-//            ) {
-//                if (response.isSuccessful){
-//                    if(response.body()?.size != 0){
-//                        listIndoData = response.body()!!
-//                        setDataToChart()
-//                    }
-//                }
-//            }
-//
-//        })
     }
 
     private fun setDataToChart() {
@@ -95,12 +76,6 @@ class IndoGraphFragment : Fragment() {
         val positifIndo = updateData.update.total.jumlahPositif
         val recoveredIndo = updateData.update.total.jumlahPositif
         val deathIndo = updateData.update.total.jumlahMeninggal
-
-//        for (i in listIndoData.indices){
-//            positifIndo = NumberFormat.getInstance(Locale.getDefault()).parse(listIndoData[i].positif)?.toInt()!!
-//            recoveredIndo = NumberFormat.getInstance(Locale.getDefault()).parse(listIndoData[i].sembuh)?.toInt()!!
-//            deathIndo = NumberFormat.getInstance(Locale.getDefault()).parse(listIndoData[i].meninggal)?.toInt()!!
-//        }
 
         val entries : ArrayList<PieEntry> = ArrayList()
 
@@ -130,6 +105,7 @@ class IndoGraphFragment : Fragment() {
         pieDataSet.colors = pieColor
         pieDataSet.valueTextSize = 14f
         pieDataSet.valueTextColor = Color.WHITE
+        pieDataSet.valueFormatter = PercentFormatter(pieChartIndoGraph)
 
         val pieData = PieData(pieDataSet)
 
@@ -141,6 +117,7 @@ class IndoGraphFragment : Fragment() {
         pieChartIndoGraph.description.isEnabled = true
         pieChartIndoGraph.extraTopOffset = -50f
         pieChartIndoGraph.data = pieData
+        pieChartIndoGraph.setUsePercentValues(true)
         pieChartIndoGraph.invalidate()
 
         pbLoadIndoGraph.visibility = View.GONE

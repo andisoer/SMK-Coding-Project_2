@@ -6,16 +6,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.soerjdev.smkcodingproject2.R
 import com.soerjdev.smkcodingproject2.api.ApiEndPoints
 import com.soerjdev.smkcodingproject2.api.apiRequest
 import com.soerjdev.smkcodingproject2.api.httpClient
+import com.soerjdev.smkcodingproject2.database.model.GlobalSummary
+import com.soerjdev.smkcodingproject2.database.model.IndoSummary
+import com.soerjdev.smkcodingproject2.database.model.ProvinsiCases
 import com.soerjdev.smkcodingproject2.model.globalcasesummary.GlobalCasesSummary
 import com.soerjdev.smkcodingproject2.model.provdata.ProvData
 import com.soerjdev.smkcodingproject2.model.updatedata.UpdateData
 import com.soerjdev.smkcodingproject2.ui.AllCountryDataActivity
 import com.soerjdev.smkcodingproject2.ui.AllProvinceDataActivity
 import com.soerjdev.smkcodingproject2.utils.ApiUtils
+import com.soerjdev.smkcodingproject2.viewmodel.GlobalSummaryViewModel
+import com.soerjdev.smkcodingproject2.viewmodel.IndoSummaryViewModel
+import com.soerjdev.smkcodingproject2.viewmodel.ProvinsiCasesViewModel
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import retrofit2.Call
@@ -23,7 +30,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.text.NumberFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * A simple [Fragment] subclass.
@@ -38,6 +44,13 @@ class DashboardFragment : Fragment() {
 
     private lateinit var updateData : UpdateData
     private lateinit var provData: ProvData
+
+    private lateinit var indoSummaryViewModel: IndoSummaryViewModel
+    private lateinit var globalSummaryViewModel: GlobalSummaryViewModel
+    private lateinit var provinsiViewModel: ProvinsiCasesViewModel
+    private lateinit var indoSummaryData: IndoSummary
+    private lateinit var globalSummaryData: GlobalSummary
+    private var listProvinsiCase = emptyList<ProvinsiCases>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,6 +68,12 @@ class DashboardFragment : Fragment() {
     }
 
     private fun initView() {
+
+        indoSummaryViewModel = ViewModelProvider(this).get(IndoSummaryViewModel::class.java)
+        globalSummaryViewModel = ViewModelProvider(this).get(GlobalSummaryViewModel::class.java)
+        provinsiViewModel = ViewModelProvider(this).get(ProvinsiCasesViewModel::class.java)
+
+
         containerNameProvinces.setOnClickListener {
             startActivity(Intent(context, AllProvinceDataActivity::class.java))
         }
@@ -63,7 +82,76 @@ class DashboardFragment : Fragment() {
             startActivity(Intent(context, AllCountryDataActivity::class.java))
         }
 
+        indoSummaryViewModel.indoSummaryData.observe(viewLifecycleOwner, androidx.lifecycle.Observer { indoSummary ->
+            indoSummary?.let {
+                if(it != null){
+                    indoSummaryData = it
+                    if(listProvinsiCase.isNotEmpty()){
+                        setIndoData()
+                    }
+                }
+            }
+        })
+
+        provinsiViewModel.allProvinsiCases.observe(viewLifecycleOwner, androidx.lifecycle.Observer { provinceCase ->
+            provinceCase?.let {
+                if(it.isNotEmpty()){
+                    listProvinsiCase = it
+                    setIndoData()
+                }
+            }
+        })
+
+        globalSummaryViewModel.globalSummaryData.observe(viewLifecycleOwner, androidx.lifecycle.Observer { globalSummary ->
+            globalSummary?.let {
+                if(it != null){
+                    globalSummaryData = it
+                    setData()
+                }
+            }
+        })
+
         getUpdateData()
+    }
+
+    private fun setIndoData() {
+
+        var provinsiPositifInt = 0
+        var provinsiRecoveredInt = 0
+        var provinsiDeathInt = 0
+
+        val positifIndo : Int = indoSummaryData.jumlah_positif
+        val recoveredIndo : Int = indoSummaryData.jumlah_sembuh
+        val deathIndo : Int = indoSummaryData.jumlah_meninggal
+
+        tvPositifCountryDashboard.text = NumberFormat.getInstance(Locale.getDefault()).
+        format(positifIndo)
+        tvRecoveredCountryDashboard.text = NumberFormat.getInstance(Locale.getDefault())
+            .format(recoveredIndo)
+        tvDeathCountryDashboard.text = NumberFormat.getInstance(Locale.getDefault())
+            .format(deathIndo)
+
+        val persenPositif = (provinsiPositifInt.toDouble() / positifIndo) * 100
+        val persenRecovered = (provinsiRecoveredInt.toDouble() / recoveredIndo) * 100
+        val persenDeath = (provinsiDeathInt.toDouble() / deathIndo) * 100
+
+        for (provinsiCases in listProvinsiCase){
+            if(provinsiCases.key == "JAWA TIMUR"){
+                provinsiPositifInt = provinsiCases.jumlahKasus
+                provinsiDeathInt = provinsiCases.jumlahMeninggal
+                provinsiRecoveredInt = provinsiCases.jumlahSembuh
+                break
+            }
+        }
+
+        tvPersenPositifProvinceDashboard.text = "(${persenPositif.toInt()}%)"
+        tvPersenRecoveredProvinceDashboard.text = "(${persenRecovered.toInt()}%)"
+        tvPersenDeathProvinceDashboard.text = "(${persenDeath.toInt()}%)"
+
+        tvPositifProvinceDashboard.text = NumberFormat.getInstance(Locale.getDefault()).format(provinsiPositifInt)
+        tvRecoveredProvinceDashboard.text = NumberFormat.getInstance(Locale.getDefault()).format(provinsiRecoveredInt)
+        tvDeathProvinceDashboard.text = NumberFormat.getInstance(Locale.getDefault()).format(provinsiDeathInt)
+
     }
 
     private fun getUpdateData() {
@@ -74,15 +162,24 @@ class DashboardFragment : Fragment() {
 
         call.enqueue(object: Callback<UpdateData> {
             override fun onFailure(call: Call<UpdateData>, t: Throwable) {
-                containerTimeoutDashboard.visibility = View.VISIBLE
+//                containerTimeoutDashboard.visibility = View.VISIBLE
                 containerShimmerDashboard.visibility = View.GONE
                 containerShimmerDashboard.stopShimmer()
+                containerDataDashboard.visibility = View.VISIBLE
+
             }
 
             override fun onResponse(call: Call<UpdateData>, response: Response<UpdateData>) {
                 if(response.isSuccessful){
                     if(response.body() != null){
                         updateData = response.body()!!
+                        val indoSummaryDatas = IndoSummary(
+                            updateData.update.total.jumlahDirawat,
+                            updateData.update.total.jumlahMeninggal,
+                            updateData.update.total.jumlahPositif,
+                            updateData.update.total.jumlahSembuh)
+
+                        indoSummaryViewModel.insert(indoSummaryDatas)
                         getProvData()
                     }
                 }
@@ -97,15 +194,31 @@ class DashboardFragment : Fragment() {
         val call = apiRequest.getProvData()
         call.enqueue(object : Callback<ProvData> {
             override fun onFailure(call: Call<ProvData>, t: Throwable) {
-                containerTimeoutDashboard.visibility = View.VISIBLE
+//                containerTimeoutDashboard.visibility = View.VISIBLE
                 containerShimmerDashboard.visibility = View.GONE
                 containerShimmerDashboard.stopShimmer()
+                containerDataDashboard.visibility = View.VISIBLE
+
             }
 
             override fun onResponse(call: Call<ProvData>, response: Response<ProvData>) {
                 if(response.isSuccessful){
                     if(response.body() != null){
                         provData = response.body()!!
+                        val provinceCasesList: ArrayList<ProvinsiCases> = ArrayList()
+
+                        for (data in provData.listData){
+                            val provinsiCases = ProvinsiCases(
+                                data.docCount,
+                                data.jumlahDirawat,
+                                data.jumlahKasus,
+                                data.jumlahMeninggal,
+                                data.jumlahSembuh,
+                                data.key)
+
+                            provinceCasesList.add(provinsiCases)
+                        }
+                        provinsiViewModel.insert(provinceCasesList)
                         getWorldDataSummary()
                     }
                 }
@@ -120,9 +233,11 @@ class DashboardFragment : Fragment() {
         val call = apiRequest.getWorldSummaryData()
         call.enqueue(object : Callback<GlobalCasesSummary>{
             override fun onFailure(call: Call<GlobalCasesSummary>, t: Throwable) {
-                containerTimeoutDashboard.visibility = View.VISIBLE
+//                containerTimeoutDashboard.visibility = View.VISIBLE
                 containerShimmerDashboard.visibility = View.GONE
                 containerShimmerDashboard.stopShimmer()
+                containerDataDashboard.visibility = View.VISIBLE
+
             }
 
             override fun onResponse(
@@ -134,7 +249,16 @@ class DashboardFragment : Fragment() {
                         globalPositif = response.body()!!.confirmed.value
                         globalRecovered = response.body()!!.recovered.value
                         globalDeath = response.body()!!.deaths.value
-                        setData()
+
+                        globalSummaryData = GlobalSummary(response.body()!!.confirmed.value, response.body()!!.recovered.value, response.body()!!.deaths.value)
+                        globalSummaryViewModel.insert(globalSummaryData)
+
+                        containerDataDashboard.visibility = View.VISIBLE
+                        containerShimmerDashboard.visibility = View.GONE
+                        containerShimmerDashboard.stopShimmer()
+//                        containerDataDashboard.visibility = View.VISIBLE
+//                        containerShimmerDashboard.visibility = View.GONE
+//                        containerShimmerDashboard.stopShimmer()
                     }
                 }
             }
@@ -142,50 +266,10 @@ class DashboardFragment : Fragment() {
     }
 
     private fun setData(){
-        var provinsiPositifInt = 0
-        var provinsiRecoveredInt = 0
-        var provinsiDeathInt = 0
+        tvPositifGlobalDashboard.text = NumberFormat.getInstance(Locale.getDefault()).format(globalSummaryData.confirmed)
+        tvRecoveredGlobalDashboard.text = NumberFormat.getInstance(Locale.getDefault()).format(globalSummaryData.recovered)
+        tvDeathGlobalDashboard.text = NumberFormat.getInstance(Locale.getDefault()).format(globalSummaryData.deaths)
 
-        val positifIndo : Int = updateData.update.total.jumlahPositif
-        val recoveredIndo : Int = updateData.update.total.jumlahSembuh
-        val deathIndo : Int = updateData.update.total.jumlahMeninggal
-
-        tvPositifCountryDashboard.text = NumberFormat.getInstance(Locale.getDefault()).
-            format(positifIndo)
-        tvRecoveredCountryDashboard.text = NumberFormat.getInstance(Locale.getDefault())
-            .format(recoveredIndo)
-        tvDeathCountryDashboard.text = NumberFormat.getInstance(Locale.getDefault())
-            .format(deathIndo)
-
-        for (i in provData.listData.indices){
-            val provinsiItem = provData.listData[i]
-            if(provinsiItem.key == "JAWA TIMUR"){
-                provinsiPositifInt = provinsiItem.jumlahKasus
-                provinsiDeathInt = provinsiItem.jumlahMeninggal
-                provinsiRecoveredInt = provinsiItem.jumlahSembuh
-                break
-            }
-        }
-
-        val persenPositif = (provinsiPositifInt.toDouble() / positifIndo) * 100
-        val persenRecovered = (provinsiRecoveredInt.toDouble() / recoveredIndo) * 100
-        val persenDeath = (provinsiDeathInt.toDouble() / deathIndo) * 100
-
-        tvPersenPositifProvinceDashboard.text = "(${persenPositif.toInt()}%)"
-        tvPersenRecoveredProvinceDashboard.text = "(${persenRecovered.toInt()}%)"
-        tvPersenDeathProvinceDashboard.text = "(${persenDeath.toInt()}%)"
-
-        tvPositifProvinceDashboard.text = NumberFormat.getInstance(Locale.getDefault()).format(provinsiPositifInt)
-        tvRecoveredProvinceDashboard.text = NumberFormat.getInstance(Locale.getDefault()).format(provinsiRecoveredInt)
-        tvDeathProvinceDashboard.text = NumberFormat.getInstance(Locale.getDefault()).format(provinsiDeathInt)
-
-        tvPositifGlobalDashboard.text = NumberFormat.getInstance(Locale.getDefault()).format(globalPositif)
-        tvRecoveredGlobalDashboard.text = NumberFormat.getInstance(Locale.getDefault()).format(globalRecovered)
-        tvDeathGlobalDashboard.text = NumberFormat.getInstance(Locale.getDefault()).format(globalDeath)
-
-        containerDataDashboard.visibility = View.VISIBLE
-        containerShimmerDashboard.visibility = View.GONE
-        containerShimmerDashboard.stopShimmer()
     }
 
     override fun onDestroy() {

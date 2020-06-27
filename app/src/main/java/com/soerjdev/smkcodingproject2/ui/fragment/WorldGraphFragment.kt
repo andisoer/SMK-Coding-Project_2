@@ -12,6 +12,7 @@ import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.PercentFormatter
 import com.soerjdev.smkcodingproject2.R
 import com.soerjdev.smkcodingproject2.api.ApiEndPoints
 import com.soerjdev.smkcodingproject2.api.apiRequest
@@ -19,6 +20,7 @@ import com.soerjdev.smkcodingproject2.api.httpClient
 import com.soerjdev.smkcodingproject2.model.globalcasesummary.GlobalCasesSummary
 import com.soerjdev.smkcodingproject2.utils.ApiUtils
 import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.fragment_indo_graph.*
 import kotlinx.android.synthetic.main.fragment_world_graph.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -76,80 +78,6 @@ class WorldGraphFragment : Fragment() {
         })
     }
 
-    /*
-    private fun getWorlDataPositif() {
-        val httpClient = httpClient()
-        val apiRequest = apiRequest<ApiEndPoints>(httpClient, ApiUtils.URL_COVID_GOV)
-
-        val call = apiRequest.getGlobalPositif()
-
-        call.enqueue(object : Callback<GlobalPositif> {
-            override fun onFailure(call: Call<GlobalPositif>, t: Throwable) {
-                pbLoadWorldGraph.visibility = View.GONE
-                containerTimeoutWorldGraph.visibility = View.VISIBLE
-            }
-
-            override fun onResponse(call: Call<GlobalPositif>, response: Response<GlobalPositif>) {
-                if(response.isSuccessful){
-                    if(response.body() != null){
-                        positifWorld = response.body()!!.value
-                        getWorldDataRecovered()
-                    }
-                }
-            }
-        })
-    }
-
-    private fun getWorldDataRecovered() {
-        val httpClient = httpClient()
-        val apiRequest = apiRequest<ApiEndPoints>(httpClient)
-        val call = apiRequest.getGlobalRecovered()
-
-        call.enqueue(object : Callback<GlobalRecovered>{
-            override fun onFailure(call: Call<GlobalRecovered>, t: Throwable) {
-                pbLoadWorldGraph.visibility = View.GONE
-                containerTimeoutWorldGraph.visibility = View.VISIBLE
-            }
-
-            override fun onResponse(
-                call: Call<GlobalRecovered>,
-                response: Response<GlobalRecovered>
-            ) {
-                if(response.isSuccessful){
-                    if(response.body() != null){
-                        recoveredWorld = response.body()!!.value
-                        getWorlDataDeath()
-                    }
-                }
-            }
-        })
-    }
-
-    private fun getWorlDataDeath() {
-        val httpClient = httpClient()
-        val apiRequest = apiRequest<ApiEndPoints>(httpClient)
-        val call = apiRequest.getGlobalDeath()
-
-        call.enqueue(object : Callback<GlobalDeath> {
-            override fun onFailure(call: Call<GlobalDeath>, t: Throwable) {
-                pbLoadWorldGraph.visibility = View.GONE
-                containerTimeoutWorldGraph.visibility = View.VISIBLE
-            }
-
-            override fun onResponse(call: Call<GlobalDeath>, response: Response<GlobalDeath>) {
-                if(response.isSuccessful){
-                    if(response.body() != null){
-                        deathWorld = response.body()!!.value
-                        setDataToChart()
-                    }
-                }
-            }
-        })
-    }
-
-     */
-
-
     private fun setDataToChart() {
         val entries: ArrayList<PieEntry> = ArrayList()
 
@@ -186,6 +114,7 @@ class WorldGraphFragment : Fragment() {
         pieDataSet.colors = pieColor
         pieDataSet.valueTextSize = 14f
         pieDataSet.valueTextColor = Color.WHITE
+        pieDataSet.valueFormatter = PercentFormatter(pieCharWorldGraph)
 
         val pieData = PieData(pieDataSet)
 
@@ -197,6 +126,8 @@ class WorldGraphFragment : Fragment() {
         pieCharWorldGraph.description.isEnabled = true
         pieCharWorldGraph.extraTopOffset = -50f
         pieCharWorldGraph.data = pieData
+        pieCharWorldGraph.setUsePercentValues(true)
+
         pieCharWorldGraph.invalidate()
 
         pbLoadWorldGraph.visibility = View.GONE
