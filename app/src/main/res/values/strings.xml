@@ -4,6 +4,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="default_notification_channel_id">fcm_default_channel</string>
+
     <string-array name="pertanyaan">
         <item>Apa itu coronavirus?</item>
         <item>Apa itu COVID-19?</item>
