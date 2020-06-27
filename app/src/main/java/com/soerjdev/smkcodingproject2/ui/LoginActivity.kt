@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -120,6 +121,7 @@ class LoginActivity : AppCompatActivity() {
                     intentToMain()
                 }else{
                     Log.e(TAG, "fb credential exception : "+task.exception)
+                    showToast(this, task.exception?.message!!)
                 }
             }
     }

@@ -59,7 +59,11 @@ class ProfileFragment : Fragment() {
             activity?.startActivity(Intent(requireActivity(), PlaceHistoryListActivity::class.java))
         }
 
-        setData(null, null)
+        if(auth.currentUser != null){
+            setData(null, null, "auth")
+        }else{
+            getPrefData()
+        }
     }
 
     private fun showAboutMeDialog() {
@@ -95,8 +99,11 @@ class ProfileFragment : Fragment() {
                 dialogInterface.dismiss()
             }
             .setPositiveButton("Ya") { _, _ ->
-                logout()
-//                clearPrefData()
+                if(auth.currentUser != null){
+                    logout()
+                }else {
+                    clearPrefData()
+                }
             }
 
         alertDialogBuilder.show()
@@ -115,12 +122,18 @@ class ProfileFragment : Fragment() {
         val fullName = sharedPreferences.getString(SharedPrefUtils.TAG_FULLNAME, null)
         val email = sharedPreferences.getString(SharedPrefUtils.TAG_EMAIL, null)
 
-        setData(fullName, email)
+        setData(fullName, email, "sharedPref")
     }
 
-    private fun setData(fullName: String?, email: String?) {
-        tvNameUserProfile.text = auth.currentUser?.displayName
-        tvEmailUserProfile.text = auth.currentUser?.email
+    private fun setData(fullName: String?, email: String?, typeAuth: String) {
+        if(typeAuth == "auth"){
+            tvNameUserProfile.text = auth.currentUser?.displayName
+            tvEmailUserProfile.text = auth.currentUser?.email
+        }else{
+            tvNameUserProfile.text = email
+            tvEmailUserProfile.text = fullName
+        }
+
     }
 
     private fun clearPrefData() {
