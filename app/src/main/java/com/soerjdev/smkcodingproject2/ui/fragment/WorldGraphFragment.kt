@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
@@ -17,8 +18,10 @@ import com.soerjdev.smkcodingproject2.R
 import com.soerjdev.smkcodingproject2.api.ApiEndPoints
 import com.soerjdev.smkcodingproject2.api.apiRequest
 import com.soerjdev.smkcodingproject2.api.httpClient
+import com.soerjdev.smkcodingproject2.database.model.GlobalSummary
 import com.soerjdev.smkcodingproject2.model.globalcasesummary.GlobalCasesSummary
 import com.soerjdev.smkcodingproject2.utils.ApiUtils
+import com.soerjdev.smkcodingproject2.viewmodel.GlobalSummaryViewModel
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_indo_graph.*
 import kotlinx.android.synthetic.main.fragment_world_graph.*
@@ -36,6 +39,10 @@ class WorldGraphFragment : Fragment() {
     private var recoveredWorld : String = ""
     private var deathWorld : String = ""
 
+    private lateinit var globalSummaryViewModel: GlobalSummaryViewModel
+    private lateinit var globalSummaryData: GlobalSummary
+
+
     lateinit var globalCasesSummary: GlobalCasesSummary
 
     override fun onCreateView(
@@ -48,35 +55,49 @@ class WorldGraphFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        getWorldData()
+//        getWorldData()
+
+        initView()
 
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun getWorldData() {
-        val httpClient = httpClient()
-        val apiRequest = apiRequest<ApiEndPoints>(httpClient, ApiUtils.URL_COVID_MATHDROID)
-
-        val call = apiRequest.getWorldSummaryData()
-        call.enqueue(object : Callback<GlobalCasesSummary>{
-            override fun onFailure(call: Call<GlobalCasesSummary>, t: Throwable) {
-                pbLoadWorldGraph.visibility = View.GONE
-                containerTimeoutWorldGraph.visibility = View.VISIBLE
-            }
-
-            override fun onResponse(
-                call: Call<GlobalCasesSummary>,
-                response: Response<GlobalCasesSummary>
-            ) {
-                if(response.isSuccessful){
-                    if(response.body() != null){
-                        globalCasesSummary = response.body()!!
-                        setDataToChart()
-                    }
+    private fun initView() {
+        globalSummaryViewModel = ViewModelProvider(this).get(GlobalSummaryViewModel::class.java)
+        globalSummaryViewModel.globalSummaryData.observe(viewLifecycleOwner, androidx.lifecycle.Observer { globalSummary ->
+            globalSummary?.let {
+                if(it != null){
+                    globalSummaryData = it
+                    setDataToChart()
                 }
             }
         })
     }
+
+//    private fun getWorldData() {
+//        val httpClient = httpClient()
+//        val apiRequest = apiRequest<ApiEndPoints>(httpClient, ApiUtils.URL_COVID_MATHDROID)
+//
+//        val call = apiRequest.getWorldSummaryData()
+//        call.enqueue(object : Callback<GlobalCasesSummary>{
+//            override fun onFailure(call: Call<GlobalCasesSummary>, t: Throwable) {
+//                pbLoadWorldGraph.visibility = View.GONE
+//                containerTimeoutWorldGraph.visibility = View.VISIBLE
+//            }
+//
+//            override fun onResponse(
+//                call: Call<GlobalCasesSummary>,
+//                response: Response<GlobalCasesSummary>
+//            ) {
+//                if(response.isSuccessful){
+//                    if(response.body() != null){
+//                        globalCasesSummary = response.body()!!
+//                        setDataToChart()
+//                    }
+//                }
+//            }
+//        })
+//    }
 
     private fun setDataToChart() {
         val entries: ArrayList<PieEntry> = ArrayList()
@@ -102,9 +123,9 @@ class WorldGraphFragment : Fragment() {
             }
         )
 
-        val positifWorldNum = globalCasesSummary.confirmed.value
-        val recoveredWorldNum = globalCasesSummary.recovered.value
-        val deathWorldNum= globalCasesSummary.deaths.value
+        val positifWorldNum = globalSummaryData.confirmed
+        val recoveredWorldNum = globalSummaryData.recovered
+        val deathWorldNum= globalSummaryData.deaths
 
         entries.add(PieEntry(positifWorldNum.toFloat(), "Positif"))
         entries.add(PieEntry(recoveredWorldNum.toFloat(), "Sembuh"))

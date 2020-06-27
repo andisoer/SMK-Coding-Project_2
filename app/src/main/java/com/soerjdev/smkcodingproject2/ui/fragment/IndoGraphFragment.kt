@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
@@ -17,8 +18,10 @@ import com.soerjdev.smkcodingproject2.R
 import com.soerjdev.smkcodingproject2.api.ApiEndPoints
 import com.soerjdev.smkcodingproject2.api.apiRequest
 import com.soerjdev.smkcodingproject2.api.httpClient
+import com.soerjdev.smkcodingproject2.database.model.IndoSummary
 import com.soerjdev.smkcodingproject2.model.updatedata.UpdateData
 import com.soerjdev.smkcodingproject2.utils.ApiUtils
+import com.soerjdev.smkcodingproject2.viewmodel.IndoSummaryViewModel
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_indo_graph.*
 import retrofit2.Call
@@ -33,6 +36,11 @@ import kotlin.collections.ArrayList
  */
 class IndoGraphFragment : Fragment() {
 
+    private lateinit var indoSummaryViewModel: IndoSummaryViewModel
+
+    private lateinit var indoSummaryData: IndoSummary
+
+
     private lateinit var updateData: UpdateData
 
     override fun onCreateView(
@@ -45,37 +53,58 @@ class IndoGraphFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        getIndoData()
+        initView()
+
+//        getIndoData()
 
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun getIndoData() {
-        val httpClient = httpClient()
-        val apiRequest = apiRequest<ApiEndPoints>(httpClient, ApiUtils.URL_COVID_GOV)
-
-        val call = apiRequest.getUpdateData()
-        call.enqueue(object : Callback<UpdateData> {
-            override fun onFailure(call: Call<UpdateData>, t: Throwable) {
-                pbLoadIndoGraph.visibility = View.GONE
-                containerTimeoutIndoGraph.visibility = View.VISIBLE
-            }
-            override fun onResponse(call: Call<UpdateData>, response: Response<UpdateData>) {
-                if(response.isSuccessful){
-                    if(response.body() != null){
-                        updateData = response.body()!!
-                        setDataToChart()
-                    }
+    private fun initView() {
+        indoSummaryViewModel = ViewModelProvider(this).get(IndoSummaryViewModel::class.java)
+        indoSummaryViewModel.indoSummaryData.observe(viewLifecycleOwner, androidx.lifecycle.Observer { indoSummary ->
+            indoSummary?.let {
+                if(it != null){
+                    indoSummaryData = it
+                    setDataToChart()
                 }
             }
         })
     }
 
+//    private fun getIndoData() {
+//        val httpClient = httpClient()
+//        val apiRequest = apiRequest<ApiEndPoints>(httpClient, ApiUtils.URL_COVID_GOV)
+//
+//        val call = apiRequest.getUpdateData()
+//        call.enqueue(object : Callback<UpdateData> {
+//            override fun onFailure(call: Call<UpdateData>, t: Throwable) {
+//                pbLoadIndoGraph.visibility = View.GONE
+//                containerTimeoutIndoGraph.visibility = View.VISIBLE
+//            }
+//            override fun onResponse(call: Call<UpdateData>, response: Response<UpdateData>) {
+//                if(response.isSuccessful){
+//                    if(response.body() != null){
+//                        updateData = response.body()!!
+//                        val indoSummaryDatas = IndoSummary(
+//                            updateData.update.total.jumlahDirawat,
+//                            updateData.update.total.jumlahMeninggal,
+//                            updateData.update.total.jumlahPositif,
+//                            updateData.update.total.jumlahSembuh)
+//
+//                        indoSummaryViewModel.insert(indoSummaryDatas)
+//                        setDataToChart()
+//                    }
+//                }
+//            }
+//        })
+//    }
+
     private fun setDataToChart() {
 
-        val positifIndo = updateData.update.total.jumlahPositif
-        val recoveredIndo = updateData.update.total.jumlahPositif
-        val deathIndo = updateData.update.total.jumlahMeninggal
+        val positifIndo = indoSummaryData.jumlah_positif
+        val recoveredIndo = indoSummaryData.jumlah_dirawat
+        val deathIndo = indoSummaryData.jumlah_meninggal
 
         val entries : ArrayList<PieEntry> = ArrayList()
 
