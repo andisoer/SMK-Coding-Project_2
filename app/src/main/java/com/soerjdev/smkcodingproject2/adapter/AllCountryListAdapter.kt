@@ -6,15 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.soerjdev.smkcodingproject2.R
+import com.soerjdev.smkcodingproject2.database.model.GlobalCases
 import com.soerjdev.smkcodingproject2.model.globalcases.GlobalCasesItem
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.layout_item_country_data.*
 import java.text.NumberFormat
 import java.util.*
 
-class AllCountryListAdapter(private val context: Context,
-                            private val listCountryDataActivity: List<GlobalCasesItem>) :
+class AllCountryListAdapter(private val context: Context) :
     RecyclerView.Adapter<AllCountryListAdapter.ViewHolder> (){
+
+    private var listGlobalCases = emptyList<GlobalCases>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(
@@ -26,15 +28,15 @@ class AllCountryListAdapter(private val context: Context,
         )
 
     override fun getItemCount(): Int {
-        return listCountryDataActivity.size
+        return listGlobalCases.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItem(listCountryDataActivity[position])
+        holder.bindItem(listGlobalCases[position])
     }
 
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
-        fun bindItem(item: GlobalCasesItem){
+        fun bindItem(item: GlobalCases){
 
             tvNameItemCountryData.text = item.combinedKey
             tvPositifItemCountryData.text = NumberFormat.getInstance(Locale.getDefault()).
@@ -45,5 +47,10 @@ class AllCountryListAdapter(private val context: Context,
                                                 format(item.deaths)
 
         }
+    }
+
+    internal fun setGlobalCases(globalCases: List<GlobalCases>){
+        this.listGlobalCases = globalCases
+        notifyDataSetChanged()
     }
 }

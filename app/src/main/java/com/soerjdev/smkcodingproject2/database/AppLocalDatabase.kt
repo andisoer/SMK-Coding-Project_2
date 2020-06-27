@@ -5,18 +5,21 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.soerjdev.smkcodingproject2.database.dao.GlobalCasesDao
 import com.soerjdev.smkcodingproject2.database.dao.ProvinsiCasesDao
+import com.soerjdev.smkcodingproject2.database.model.GlobalCases
 import com.soerjdev.smkcodingproject2.database.model.ProvinsiCases
 import kotlinx.coroutines.CoroutineScope
 
 @Database(
-    entities = arrayOf(ProvinsiCases::class),
-    version = 1,
+    entities = [ProvinsiCases::class, GlobalCases::class],
+    version = 2,
     exportSchema = true
 )
 abstract class AppLocalDatabase : RoomDatabase() {
 
     abstract fun provinsiCasesDao(): ProvinsiCasesDao
+    abstract fun globalCasesDa() : GlobalCasesDao
 
     companion object {
 
@@ -34,7 +37,9 @@ abstract class AppLocalDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppLocalDatabase::class.java,
                     "app_local_database"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 return instance
             }

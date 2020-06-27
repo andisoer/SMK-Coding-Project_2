@@ -52,9 +52,10 @@ class AllProvinceDataActivity : AppCompatActivity() {
                 Log.d(TAG, "data size : "+it.size)
                 if(it.isNotEmpty()){
                     adapter.setProvinsiCases(it)
+                    pbLoadDataProvince.visibility = View.GONE
+
                 }
             }
-            pbLoadDataProvince.visibility = View.GONE
         })
 
         getAllProvinceData()

@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.soerjdev.smkcodingproject2.adapter.AllCountryListAdapter
@@ -13,8 +15,10 @@ import com.soerjdev.smkcodingproject2.R
 import com.soerjdev.smkcodingproject2.api.ApiEndPoints
 import com.soerjdev.smkcodingproject2.api.apiRequest
 import com.soerjdev.smkcodingproject2.api.httpClient
+import com.soerjdev.smkcodingproject2.database.model.GlobalCases
 import com.soerjdev.smkcodingproject2.model.globalcases.GlobalCasesItem
 import com.soerjdev.smkcodingproject2.utils.ApiUtils
+import com.soerjdev.smkcodingproject2.viewmodel.GlobalCasesViewModel
 import kotlinx.android.synthetic.main.activity_all_country_data.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,6 +36,9 @@ class AllCountryDataActivity : AppCompatActivity(),
     private var checkedItem : Int = 0
     private var tagFilter = "Positif"
 
+    private lateinit var globalCasesViewModel: GlobalCasesViewModel
+    private val adapter = AllCountryListAdapter(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_country_data)
@@ -43,17 +50,39 @@ class AllCountryDataActivity : AppCompatActivity(),
         tbAllCountryData.setNavigationOnClickListener { finish() }
         tbAllCountryData.setOnMenuItemClickListener(this)
 
+        rvAllCountryData.layoutManager = LinearLayoutManager(this)
+        rvAllCountryData.adapter = adapter
+
+        globalCasesViewModel = ViewModelProvider(this).get(GlobalCasesViewModel::class.java)
+
+        globalCasesViewModel.allGlobalCases.observe(this, Observer { globalCases ->
+            globalCases?.let {
+                if(it.isNotEmpty()){
+                    adapter.setGlobalCases(it)
+                    pbLoadDataCountry.visibility = View.GONE
+                }
+            }
+        })
+
         getAllCountryData()
     }
 
     private fun setData(listData: List<GlobalCasesItem>) {
-        rvAllCountryData.layoutManager = LinearLayoutManager(this)
-        rvAllCountryData.adapter =
-            AllCountryListAdapter(
-                this,
-                listData
+        val globalCasesList: ArrayList<GlobalCases> = ArrayList()
+
+        for (data in listData){
+            val globalCases = GlobalCases(
+                data.combinedKey,
+                data.confirmed,
+                data.deaths,
+                data.recovered,
+                data.uid
             )
-        pbLoadDataCountry.visibility = View.GONE
+
+            globalCasesList.add(globalCases)
+        }
+
+        globalCasesViewModel.insert(globalCasesList)
     }
 
     private fun getAllCountryData() {
@@ -123,49 +152,7 @@ class AllCountryDataActivity : AppCompatActivity(),
                     }
                 })
             }
-
-            //        val call = apiRequest.getGlobalListData()
-            //        call.enqueue(object : Callback<List<GlobalDataItem>> {
-            //            override fun onFailure(call: Call<List<GlobalDataItem>>, t: Throwable) {
-            //
-            //            }
-            //
-            //            override fun onResponse(
-            //                call: Call<List<GlobalDataItem>>,
-            //                response: Response<List<GlobalDataItem>>
-            //            ) {
-            //                when {
-            //                    response.isSuccessful ->
-            //                        when {
-            //                            response.body()?.size != 0 ->
-            //                                setData(response.body()!!)
-            //                        }
-            //                }
-            //            }
-            //
-            //        })
         }
-
-//        val call = apiRequest.getGlobalListData()
-//        call.enqueue(object : Callback<List<GlobalDataItem>> {
-//            override fun onFailure(call: Call<List<GlobalDataItem>>, t: Throwable) {
-//
-//            }
-//
-//            override fun onResponse(
-//                call: Call<List<GlobalDataItem>>,
-//                response: Response<List<GlobalDataItem>>
-//            ) {
-//                when {
-//                    response.isSuccessful ->
-//                        when {
-//                            response.body()?.size != 0 ->
-//                                setData(response.body()!!)
-//                        }
-//                }
-//            }
-//
-//        })
     }
 
     private fun showFilterDialog() {
@@ -174,7 +161,7 @@ class AllCountryDataActivity : AppCompatActivity(),
             .setNeutralButton("Batal") { dialogInterface, _ ->
                 dialogInterface.dismiss()
             }
-            .setPositiveButton("Pilih"){ dialogInterface, i ->
+            .setPositiveButton("Pilih"){ dialogInterface, _ ->
                 tagFilter = itemDialog[checkedItem]
                 getAllCountryData()
                 dialogInterface.dismiss()
