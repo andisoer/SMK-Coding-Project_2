@@ -1,5 +1,6 @@
 package com.soerjdev.smkcodingproject2.ui
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.soerjdev.smkcodingproject2.MainActivity
 import com.soerjdev.smkcodingproject2.R
+import com.soerjdev.smkcodingproject2.utils.SharedPrefUtils
+import com.soerjdev.smkcodingproject2.utils.showToast
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -56,13 +59,13 @@ class LoginActivity : AppCompatActivity() {
 
         callbackManager = CallbackManager.Factory.create()
 
-//        sharedPreferences = getSharedPreferences(SharedPrefUtils.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
-//        val isLogin = sharedPreferences.getBoolean(SharedPrefUtils.TAG_IS_LOGIN, false)
-//
-//        if (isLogin){
-//            startActivity(Intent(this, MainActivity::class.java))
-//            finish()
-//        }
+        sharedPreferences = getSharedPreferences(SharedPrefUtils.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
+        val isLogin = sharedPreferences.getBoolean(SharedPrefUtils.TAG_IS_LOGIN, false)
+
+        if (isLogin){
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
 
         initView()
     }
@@ -114,6 +117,7 @@ class LoginActivity : AppCompatActivity() {
                 if(task.isSuccessful){
                     Log.d(TAG, "fb auth complete")
                     Log.d(TAG, "User : "+auth.currentUser?.displayName)
+                    intentToMain()
                 }else{
                     Log.e(TAG, "fb credential exception : "+task.exception)
                 }
@@ -132,29 +136,29 @@ class LoginActivity : AppCompatActivity() {
         when {
             email.isEmpty() -> tieEmailLogin.error = "Isi email anda !"
             password.isEmpty() -> tiePasswordLogin.error = "Isi kata sandi anda !"
-//            else -> checkPrefData(email, password)
+            else -> checkPrefData(email, password)
         }
     }
 
-//    private fun checkPrefData(email : String, password : String) {
-//        val emailPref = sharedPreferences.getString(SharedPrefUtils.TAG_EMAIL, null)
-//        val passwordPref = sharedPreferences.getString(SharedPrefUtils.TAG_PASSWORD, null)
-//
-//        if(emailPref.equals(email) && passwordPref.equals(password)){
-//
-//            val editor = sharedPreferences.edit()
-//            editor.putBoolean(SharedPrefUtils.TAG_IS_LOGIN, true)
-//            editor.apply()
-//
-//            startActivity(Intent(this, MainActivity::class.java))
-//            finish()
-//        }else{
-//            showToast(
-//                this,
-//                "User tidak ditemukan, silahkan mendaftar"
-//            )
-//        }
-//    }
+    private fun checkPrefData(email : String, password : String) {
+        val emailPref = sharedPreferences.getString(SharedPrefUtils.TAG_EMAIL, null)
+        val passwordPref = sharedPreferences.getString(SharedPrefUtils.TAG_PASSWORD, null)
+
+        if(emailPref.equals(email) && passwordPref.equals(password)){
+
+            val editor = sharedPreferences.edit()
+            editor.putBoolean(SharedPrefUtils.TAG_IS_LOGIN, true)
+            editor.apply()
+
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }else{
+            showToast(
+                this,
+                "User tidak ditemukan, silahkan mendaftar"
+            )
+        }
+    }
 
     private fun authWithGoogle(idToken: String?) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
