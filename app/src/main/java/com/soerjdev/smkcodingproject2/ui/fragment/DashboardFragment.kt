@@ -10,13 +10,8 @@ import com.soerjdev.smkcodingproject2.R
 import com.soerjdev.smkcodingproject2.api.ApiEndPoints
 import com.soerjdev.smkcodingproject2.api.apiRequest
 import com.soerjdev.smkcodingproject2.api.httpClient
-import com.soerjdev.smkcodingproject2.model.GlobalDeath
-import com.soerjdev.smkcodingproject2.model.GlobalPositif
-import com.soerjdev.smkcodingproject2.model.GlobalRecovered
 import com.soerjdev.smkcodingproject2.model.globalcasesummary.GlobalCasesSummary
 import com.soerjdev.smkcodingproject2.model.provdata.ProvData
-import com.soerjdev.smkcodingproject2.model.provinsidata.ProvinsiDataItem
-import com.soerjdev.smkcodingproject2.model.summaryindodata.SummaryIndoDataItem
 import com.soerjdev.smkcodingproject2.model.updatedata.UpdateData
 import com.soerjdev.smkcodingproject2.ui.AllCountryDataActivity
 import com.soerjdev.smkcodingproject2.ui.AllProvinceDataActivity
@@ -37,16 +32,9 @@ import kotlin.collections.ArrayList
  */
 class DashboardFragment : Fragment() {
 
-    private var listIndoData : List<SummaryIndoDataItem> = ArrayList()
-    private var listProvince : List<ProvinsiDataItem> = ArrayList()
-
     private var globalPositif : Int = 0
     private var globalRecovered : Int = 0
     private var globalDeath : Int = 0
-
-    private var nationalPositif : String = ""
-    private var nationalRecovered : String = ""
-    private var nationalDeath : String = ""
 
     private lateinit var updateData : UpdateData
     private lateinit var provData: ProvData

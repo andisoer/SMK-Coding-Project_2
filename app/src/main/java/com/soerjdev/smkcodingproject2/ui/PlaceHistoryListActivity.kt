@@ -9,7 +9,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.soerjdev.smkcodingproject2.adapter.PlaceHistoryAdapter
 import com.soerjdev.smkcodingproject2.R
-import com.soerjdev.smkcodingproject2.interfaces.PlaceHistoryInterface
 import com.soerjdev.smkcodingproject2.model.placehistory.PlaceHistory
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_place_history_list.*

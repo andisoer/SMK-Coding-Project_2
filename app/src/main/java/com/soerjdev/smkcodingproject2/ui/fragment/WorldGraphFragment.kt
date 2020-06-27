@@ -16,19 +16,13 @@ import com.soerjdev.smkcodingproject2.R
 import com.soerjdev.smkcodingproject2.api.ApiEndPoints
 import com.soerjdev.smkcodingproject2.api.apiRequest
 import com.soerjdev.smkcodingproject2.api.httpClient
-import com.soerjdev.smkcodingproject2.model.GlobalDeath
-import com.soerjdev.smkcodingproject2.model.GlobalPositif
-import com.soerjdev.smkcodingproject2.model.GlobalRecovered
 import com.soerjdev.smkcodingproject2.model.globalcasesummary.GlobalCasesSummary
 import com.soerjdev.smkcodingproject2.utils.ApiUtils
 import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.fragment_indo_graph.*
 import kotlinx.android.synthetic.main.fragment_world_graph.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.NumberFormat
-import java.util.*
 import kotlin.collections.ArrayList
 
 /**

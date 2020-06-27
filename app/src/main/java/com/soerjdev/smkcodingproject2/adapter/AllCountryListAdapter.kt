@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.soerjdev.smkcodingproject2.R
 import com.soerjdev.smkcodingproject2.model.globalcases.GlobalCasesItem
-import com.soerjdev.smkcodingproject2.model.globaldata.GlobalDataItem
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.layout_item_country_data.*
 import java.text.NumberFormat

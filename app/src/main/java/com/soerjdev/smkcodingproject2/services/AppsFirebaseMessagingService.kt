@@ -11,7 +11,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.soerjdev.smkcodingproject2.NotificationListActivity
+import com.soerjdev.smkcodingproject2.MainActivity
 import com.soerjdev.smkcodingproject2.R
 
 class AppsFirebaseMessagingService : FirebaseMessagingService() {
@@ -26,12 +26,12 @@ class AppsFirebaseMessagingService : FirebaseMessagingService() {
         p0.notification?.let {
             Log.d(TAG, "Message notification body : "+it.body)
             Log.d(TAG, "Message title : "+it.title)
-            sendNotification(it.body, it.title)
+//            sendNotification(it.body, it.title)
         }
     }
 
     private fun sendNotification(messageBody: String?, title: String?){
-        val intent = Intent(this, NotificationListActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
@@ -40,6 +40,7 @@ class AppsFirebaseMessagingService : FirebaseMessagingService() {
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.drawable.ic_action_notification)
+            .setColor(resources.getColor(R.color.colorAccent))
             .setContentTitle(title)
             .setContentText(messageBody)
             .setAutoCancel(true)

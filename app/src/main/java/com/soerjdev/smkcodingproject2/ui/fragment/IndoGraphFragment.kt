@@ -16,7 +16,6 @@ import com.soerjdev.smkcodingproject2.R
 import com.soerjdev.smkcodingproject2.api.ApiEndPoints
 import com.soerjdev.smkcodingproject2.api.apiRequest
 import com.soerjdev.smkcodingproject2.api.httpClient
-import com.soerjdev.smkcodingproject2.model.summaryindodata.SummaryIndoDataItem
 import com.soerjdev.smkcodingproject2.model.updatedata.UpdateData
 import com.soerjdev.smkcodingproject2.utils.ApiUtils
 import kotlinx.android.synthetic.*
@@ -32,8 +31,6 @@ import kotlin.collections.ArrayList
  * A simple [Fragment] subclass.
  */
 class IndoGraphFragment : Fragment() {
-
-    private var listIndoData : List<SummaryIndoDataItem> = ArrayList()
 
     private lateinit var updateData: UpdateData
 

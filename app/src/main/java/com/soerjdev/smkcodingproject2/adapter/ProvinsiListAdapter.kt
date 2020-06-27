@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.soerjdev.smkcodingproject2.R
 import com.soerjdev.smkcodingproject2.model.provdata.Data
-import com.soerjdev.smkcodingproject2.model.provinsidata.ProvinsiDataItem
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.layout_item_province_data.*
 import java.text.NumberFormat

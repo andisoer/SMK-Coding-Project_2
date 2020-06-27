@@ -10,7 +10,6 @@ import com.soerjdev.smkcodingproject2.api.ApiEndPoints
 import com.soerjdev.smkcodingproject2.api.apiRequest
 import com.soerjdev.smkcodingproject2.api.httpClient
 import com.soerjdev.smkcodingproject2.model.provdata.ProvData
-import com.soerjdev.smkcodingproject2.model.provinsidata.ProvinsiDataItem
 import com.soerjdev.smkcodingproject2.utils.ApiUtils
 import kotlinx.android.synthetic.main.activity_all_province_data.*
 import retrofit2.Call
