@@ -56,7 +56,7 @@ class ProfileFragment : Fragment() {
         }
 
         containerPlaceHistory.setOnClickListener {
-            activity?.startActivity(Intent(activity!!, PlaceHistoryListActivity::class.java))
+            activity?.startActivity(Intent(requireActivity(), PlaceHistoryListActivity::class.java))
         }
 
         setData(null, null)
@@ -110,7 +110,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun getPrefData() {
-        sharedPreferences = context!!.getSharedPreferences(SharedPrefUtils.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
+        sharedPreferences = requireContext().getSharedPreferences(SharedPrefUtils.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
         val fullName = sharedPreferences.getString(SharedPrefUtils.TAG_FULLNAME, null)
         val email = sharedPreferences.getString(SharedPrefUtils.TAG_EMAIL, null)
@@ -128,7 +128,7 @@ class ProfileFragment : Fragment() {
         editor.putBoolean(SharedPrefUtils.TAG_IS_LOGIN, false)
         editor.apply()
 
-        showToast(context!!, "Berhasil keluar, silahkan login")
+        showToast(requireContext(), "Berhasil keluar, silahkan login")
         activity?.startActivity(Intent(activity, LoginActivity::class.java))
         activity?.finish()
     }

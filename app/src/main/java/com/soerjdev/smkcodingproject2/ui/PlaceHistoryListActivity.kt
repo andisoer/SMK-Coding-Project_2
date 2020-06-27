@@ -9,11 +9,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.soerjdev.smkcodingproject2.PlaceHistoryAdapter
 import com.soerjdev.smkcodingproject2.R
+import com.soerjdev.smkcodingproject2.interfaces.PlaceHistoryInterface
 import com.soerjdev.smkcodingproject2.model.placehistory.PlaceHistory
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_place_history_list.*
 
-class PlaceHistoryListActivity : AppCompatActivity() {
+class PlaceHistoryListActivity : AppCompatActivity(), PlaceHistoryInterface {
 
     private lateinit var databaseReference: DatabaseReference
     private var auth = FirebaseAuth.getInstance()
@@ -52,7 +53,10 @@ class PlaceHistoryListActivity : AppCompatActivity() {
                     for (data in snapshot.children){
                         val placeHistory = data.getValue(PlaceHistory::class.java)
 
+                        placeHistory?.uid = data.key!!
+
                         listPlaceHistory.add(placeHistory!!)
+
                     }
 
                     rvListPlaceHistory.layoutManager = LinearLayoutManager(this@PlaceHistoryListActivity)
@@ -73,5 +77,13 @@ class PlaceHistoryListActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         this.clearFindViewByIdCache()
+    }
+
+    override fun deletePlaceHistory(uid: String) {
+
+    }
+
+    override fun updatePlaceHistory(placeHistory: PlaceHistory) {
+
     }
 }

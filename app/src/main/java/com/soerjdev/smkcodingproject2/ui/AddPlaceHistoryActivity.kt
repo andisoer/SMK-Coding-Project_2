@@ -53,7 +53,7 @@ class AddPlaceHistoryActivity : AppCompatActivity() {
     }
 
     private fun insertData(placeName: String, placeAddress: String, placeType: String, placeDate: String) {
-        val placeHistory = PlaceHistory(placeName, placeAddress, placeType, placeDate)
+        val placeHistory = PlaceHistory(placeName, placeAddress, placeType, placeDate, "")
         databaseRef.child(auth.uid!!).push().setValue(placeHistory)
             .addOnCompleteListener {
 
