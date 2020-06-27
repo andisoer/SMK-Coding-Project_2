@@ -39,7 +39,6 @@ class DashboardFragment : Fragment() {
     private lateinit var updateData : UpdateData
     private lateinit var provData: ProvData
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -65,8 +64,6 @@ class DashboardFragment : Fragment() {
         }
 
         getUpdateData()
-
-//        getSummaryIndoData()
     }
 
     private fun getUpdateData() {
@@ -143,134 +140,6 @@ class DashboardFragment : Fragment() {
             }
         })
     }
-
-    /*
-    private fun getSummaryIndoData() {
-        val httpClient = httpClient()
-        val apiRequest = apiRequest<ApiEndPoints>(httpClient)
-
-        val call = apiRequest.getSummaryIndoData()
-        call.enqueue(object : Callback<List<SummaryIndoDataItem>>{
-            override fun onFailure(call: Call<List<SummaryIndoDataItem>>, t: Throwable) {
-                containerTimeoutDashboard.visibility = View.VISIBLE
-                containerShimmerDashboard.visibility = View.GONE
-                containerShimmerDashboard.stopShimmer()
-            }
-
-            override fun onResponse(
-                call: Call<List<SummaryIndoDataItem>>,
-                response: Response<List<SummaryIndoDataItem>>
-            ) {
-                if (response.isSuccessful){
-                    if(response.body()?.size != 0){
-                        listIndoData = response.body()!!
-                        getJatimData()
-                    }
-                }
-            }
-        })
-    }
-
-    private fun getJatimData() {
-        val httpClient = httpClient()
-        val apiRequest = apiRequest<ApiEndPoints>(httpClient)
-
-        val call = apiRequest.getProvinceListData()
-        call.enqueue(object : Callback<List<ProvinsiDataItem>>{
-            override fun onFailure(call: Call<List<ProvinsiDataItem>>, t: Throwable) {
-                containerTimeoutDashboard.visibility = View.VISIBLE
-                containerShimmerDashboard.visibility = View.GONE
-                containerShimmerDashboard.stopShimmer()
-            }
-
-            override fun onResponse(
-                call: Call<List<ProvinsiDataItem>>,
-                response: Response<List<ProvinsiDataItem>>
-            ) {
-                if(response.isSuccessful){
-                    if(response.body()?.size != 0){
-                        listProvince = response.body()!!
-                        getGlobalDataPositif()
-                    }
-                }
-            }
-        })
-    }
-
-    private fun getGlobalDataPositif() {
-        val httpClient = httpClient()
-        val apiRequest = apiRequest<ApiEndPoints>(httpClient)
-
-        val call = apiRequest.getGlobalPositif()
-
-        call.enqueue(object: Callback<GlobalPositif> {
-            override fun onFailure(call: Call<GlobalPositif>, t: Throwable) {
-                containerTimeoutDashboard.visibility = View.VISIBLE
-                containerShimmerDashboard.visibility = View.GONE
-                containerShimmerDashboard.stopShimmer()
-            }
-
-            override fun onResponse(call: Call<GlobalPositif>, response: Response<GlobalPositif>) {
-                if(response.isSuccessful){
-                    if(response.body() != null){
-                        globalPositif = response.body()!!.value
-                        getGlobalDataRecovered()
-                    }
-                }
-            }
-        })
-    }
-
-    private fun getGlobalDataRecovered() {
-        val httpClient = httpClient()
-        val apiRequest = apiRequest<ApiEndPoints>(httpClient)
-
-        val call2 = apiRequest.getGlobalRecovered()
-
-        call2.enqueue(object: Callback<GlobalRecovered> {
-            override fun onFailure(call: Call<GlobalRecovered>, t: Throwable) {
-                containerTimeoutDashboard.visibility = View.VISIBLE
-                containerShimmerDashboard.visibility = View.GONE
-                containerShimmerDashboard.stopShimmer()
-            }
-
-            override fun onResponse(
-                call: Call<GlobalRecovered>,
-                response: Response<GlobalRecovered>
-            ) {
-                if (response.isSuccessful){
-                    if(response.body() != null){
-                        globalRecovered = response.body()!!.value
-                        getGlobalDataDeath()
-                    }
-                }
-            }
-        })
-    }
-
-    private fun getGlobalDataDeath() {
-        val httpClient = httpClient()
-        val apiRequest = apiRequest<ApiEndPoints>(httpClient)
-
-        val call = apiRequest.getGlobalDeath()
-
-        call.enqueue(object: Callback<GlobalDeath> {
-            override fun onFailure(call: Call<GlobalDeath>, t: Throwable) {
-                containerTimeoutDashboard.visibility = View.VISIBLE
-                containerShimmerDashboard.visibility = View.GONE
-                containerShimmerDashboard.stopShimmer()
-            }
-
-            override fun onResponse(call: Call<GlobalDeath>, response: Response<GlobalDeath>) {
-                if (response.isSuccessful){
-                    if(response.body() != null){
-                        globalDeath = response.body()!!.value
-                        setData()
-                    }
-                }
-            }
-        })
-    }*/
 
     private fun setData(){
         var provinsiPositifInt = 0

@@ -2,21 +2,29 @@ package com.soerjdev.smkcodingproject2.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.soerjdev.smkcodingproject2.adapter.ProvinsiListAdapter
 import com.soerjdev.smkcodingproject2.R
 import com.soerjdev.smkcodingproject2.api.ApiEndPoints
 import com.soerjdev.smkcodingproject2.api.apiRequest
 import com.soerjdev.smkcodingproject2.api.httpClient
+import com.soerjdev.smkcodingproject2.database.model.ProvinsiCases
 import com.soerjdev.smkcodingproject2.model.provdata.ProvData
 import com.soerjdev.smkcodingproject2.utils.ApiUtils
+import com.soerjdev.smkcodingproject2.viewmodel.ProvinsiCasesViewModel
 import kotlinx.android.synthetic.main.activity_all_province_data.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class AllProvinceDataActivity : AppCompatActivity() {
+
+    private lateinit var provinsiCasesViewModel: ProvinsiCasesViewModel
+    private val adapter = ProvinsiListAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,15 +37,42 @@ class AllProvinceDataActivity : AppCompatActivity() {
         setSupportActionBar(tbAllProvinceData)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        rvAllProvinceData.layoutManager = LinearLayoutManager(this)
+
+        provinsiCasesViewModel = ViewModelProvider(this).get(ProvinsiCasesViewModel::class.java)
+
+        rvAllProvinceData.adapter = adapter
+
+        provinsiCasesViewModel.allProvinsiCases.observe(this, Observer { provinsiCases ->
+            provinsiCases?.let {
+                var p = 1
+                Log.d("wdqdw", "dqwd$p")
+                adapter.setProvinsiCases(it)
+            }
+            pbLoadDataProvince.visibility = View.GONE
+        })
+
         getAllProvinceData()
     }
 
     private fun setData(provData: ProvData) {
 
-        rvAllProvinceData.layoutManager = LinearLayoutManager(this)
-        rvAllProvinceData.adapter = ProvinsiListAdapter(this, provData.listData)
+        val provinceCasesList: ArrayList<ProvinsiCases> = ArrayList()
 
-        pbLoadDataProvince.visibility = View.GONE
+        for (data in provData.listData){
+            val provinsiCases = ProvinsiCases(
+                data.docCount,
+                data.jumlahDirawat,
+                data.jumlahKasus,
+                data.jumlahMeninggal,
+                data.jumlahSembuh,
+                data.key)
+
+            provinceCasesList.add(provinsiCases)
+        }
+
+        provinsiCasesViewModel.insert(provinceCasesList)
+
 //        rvAllProvinceData.layoutManager = LinearLayoutManager(this)
 //        rvAllProvinceData.adapter =
 //            ProvinsiListAdapter(
