@@ -4,6 +4,10 @@ Submission for SMK Coding Phase 2, COVID-19 monitoring application based on nati
 * Fragment
 * Public REST Api
 * SharedPreferences
+* Firebase Auth (Facebook And Google Mail)
+* Firebase Database
+* Firebase Cloud Messaging
+* Offline Capabilites (ROOM)
 
 ## Preview
 ![Preview Image 1](https://github.com/andisoer/SMK-Coding-Project_2/blob/master/screenshots/overview1.png)
@@ -17,6 +21,8 @@ Submission for SMK Coding Phase 2, COVID-19 monitoring application based on nati
 * Retrofit
 * Shimmer
 * MPAndroidChart
+* ROOM
+* Firebase as BaaS (Backend as Service)
 
 ## Data Source
 * [kawalcorona.com/api](https://kawalcorona.com/api)
