@@ -26,6 +26,10 @@ class AllProvinceDataActivity : AppCompatActivity() {
     private lateinit var provinsiCasesViewModel: ProvinsiCasesViewModel
     private val adapter = ProvinsiListAdapter(this)
 
+    companion object {
+        val TAG = AllProvinceDataActivity::class.java.name
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_province_data)
@@ -45,9 +49,10 @@ class AllProvinceDataActivity : AppCompatActivity() {
 
         provinsiCasesViewModel.allProvinsiCases.observe(this, Observer { provinsiCases ->
             provinsiCases?.let {
-                var p = 1
-                Log.d("wdqdw", "dqwd$p")
-                adapter.setProvinsiCases(it)
+                Log.d(TAG, "data size : "+it.size)
+                if(it.isNotEmpty()){
+                    adapter.setProvinsiCases(it)
+                }
             }
             pbLoadDataProvince.visibility = View.GONE
         })
