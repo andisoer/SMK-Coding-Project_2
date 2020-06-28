@@ -27,4 +27,4 @@ Submission for SMK Coding Phase 2, COVID-19 monitoring application based on nati
 ## Data Source
 * [data.covid19.go.id/public/api/](https://data.covid19.go.id/public/api/)
 * [covid19.mathdro.id/api](https://covid19.mathdro.id/api)
-* [WHO](www.who.int/indonesia/news/novel-coronavirus/qa-for-public)
+* [WHO](https://www.who.int/indonesia/news/novel-coronavirus/qa-for-public)
