@@ -25,5 +25,6 @@ Submission for SMK Coding Phase 2, COVID-19 monitoring application based on nati
 * Firebase as BaaS (Backend as Service)
 
 ## Data Source
-* [kawalcorona.com/api](https://kawalcorona.com/api)
+* [data.covid19.go.id/public/api/](https://data.covid19.go.id/public/api/)
+* [covid19.mathdro.id/api](https://covid19.mathdro.id/api)
 * [WHO](www.who.int/indonesia/news/novel-coronavirus/qa-for-public)
