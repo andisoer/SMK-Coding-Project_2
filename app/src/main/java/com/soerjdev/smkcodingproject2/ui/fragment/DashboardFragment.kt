@@ -19,6 +19,7 @@ import com.soerjdev.smkcodingproject2.model.provdata.ProvData
 import com.soerjdev.smkcodingproject2.model.updatedata.UpdateData
 import com.soerjdev.smkcodingproject2.ui.AllCountryDataActivity
 import com.soerjdev.smkcodingproject2.ui.AllProvinceDataActivity
+import com.soerjdev.smkcodingproject2.ui.PlaceHistoryListActivity
 import com.soerjdev.smkcodingproject2.utils.ApiUtils
 import com.soerjdev.smkcodingproject2.viewmodel.GlobalSummaryViewModel
 import com.soerjdev.smkcodingproject2.viewmodel.IndoSummaryViewModel
@@ -80,6 +81,10 @@ class DashboardFragment : Fragment() {
 
         containerNameWorld.setOnClickListener {
             startActivity(Intent(context, AllCountryDataActivity::class.java))
+        }
+
+        containerPlaceHistoryDashboard.setOnClickListener {
+            startActivity(Intent(context, PlaceHistoryListActivity::class.java))
         }
 
         indoSummaryViewModel.indoSummaryData.observe(viewLifecycleOwner, androidx.lifecycle.Observer { indoSummary ->
@@ -250,7 +255,7 @@ class DashboardFragment : Fragment() {
                         globalRecovered = response.body()!!.recovered.value
                         globalDeath = response.body()!!.deaths.value
 
-                        globalSummaryData = GlobalSummary(response.body()!!.confirmed.value, response.body()!!.recovered.value, response.body()!!.deaths.value)
+                        globalSummaryData = GlobalSummary(response.body()!!.confirmed.value, response.body()!!.deaths.value, response.body()!!.recovered.value)
                         globalSummaryViewModel.insert(globalSummaryData)
 
                         containerDataDashboard.visibility = View.VISIBLE

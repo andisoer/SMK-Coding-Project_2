@@ -44,6 +44,13 @@ class PlaceHistoryAdapter(
         fun bindItem(item: PlaceHistory){
             tvPlaceNameItemPlaceHistory.text = item.placeName
             tvAddresItemPlaceHistory.text = item.placeAddres
+            tvDateItemPlaceHistory.text = item.placeDate
+
+            when (item.placeCategory){
+                "Pekerjaan" -> ivTypeItemPlaceHistory.setBackgroundResource(R.drawable.ic_action_work)
+                "Belajar" -> ivTypeItemPlaceHistory.setBackgroundResource(R.drawable.ic_action_school)
+                "Belanja" -> ivTypeItemPlaceHistory.setBackgroundResource(R.drawable.ic_action_local_grocery_store)
+            }
 
             val database = FirebaseDatabase.getInstance()
             val auth = FirebaseAuth.getInstance()

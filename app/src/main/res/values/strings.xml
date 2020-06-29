@@ -112,4 +112,10 @@ Apa pun keadaannya, jika Anda mengalami demam, batuk dan kesulitan bernapas, seg
     <string name="masuk_dengan_facebook">Masuk dengan Facebook</string>
     <string name="urutkan_data">Urutkan data</string>
 
+    <string-array name="place_history_type">
+        <item>Pekerjaan</item>
+        <item>Belajar</item>
+        <item>Belanja</item>
+    </string-array>
+    
 </resources>

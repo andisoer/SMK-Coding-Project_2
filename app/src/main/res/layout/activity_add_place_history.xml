@@ -61,28 +61,49 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnMapsAddPlaceHistory"
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                android:id="@+id/btnMapsAddPlaceHistory"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Atau pilih pada peta"-->
+<!--                android:layout_marginTop="2dp"-->
+<!--                style="@style/Widget.MaterialComponents.Button.TextButton"/>-->
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Atau pilih pada peta"
-                android:layout_marginTop="2dp"
-                style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                android:orientation="horizontal"
+                android:paddingVertical="16dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilCategoryAddPlaceHistory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:errorEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tieCategoryAddPlaceHistory"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="Pilih jenis perjalanan"/>
+                    android:layout_weight="1"
+                    android:text="Pilih Jenis Perjalanan"/>
 
-            </com.google.android.material.textfield.TextInputLayout>
+                <Spinner
+                    android:id="@+id/spinnerCategoryAddPlaceHistory"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/tilCategoryAddPlaceHistory"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                app:errorEnabled="true">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/tieCategoryAddPlaceHistory"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:hint="Pilih jenis perjalanan"-->
+<!--                    android:inputType="textAutoComplete"/>-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilDateAddPlaceHistory"

@@ -10,6 +10,10 @@
     <color name="SignInTextGoogle">#757575</color>
     <color name="SignInTextFacebook">#3B5998</color>
 
+    <color name="colorBlue">#2193b0</color>
+    <color name="colorBlue2">#6dd5fa</color>
+
+
     <color name="colorDeath">#F76353</color>
     <color name="colorRecovered">#00CC99</color>
     <color name="colorConfirmed">#F2B900</color>

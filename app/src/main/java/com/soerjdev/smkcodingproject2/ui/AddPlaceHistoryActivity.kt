@@ -3,6 +3,9 @@ package com.soerjdev.smkcodingproject2.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -14,13 +17,18 @@ import com.soerjdev.smkcodingproject2.utils.showToast
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_add_place_history.*
 
-class AddPlaceHistoryActivity : AppCompatActivity() {
+class AddPlaceHistoryActivity : AppCompatActivity(),
+    AdapterView.OnItemSelectedListener {
 
     private val database = FirebaseDatabase.getInstance()
     private val auth = FirebaseAuth.getInstance()
     private lateinit var databaseRef: DatabaseReference
     private var OPERATION_TYPE = ""
     private var updatedDataUid = ""
+
+    private lateinit var adapter: ArrayAdapter<CharSequence>
+
+    private var categoryPlaceHistory = ""
 
     private var TAG = AddPlaceHistoryActivity::class.java.name
 
@@ -47,6 +55,14 @@ class AddPlaceHistoryActivity : AppCompatActivity() {
 
         OPERATION_TYPE = intent.getStringExtra(TAG_OPERATION_TYPE)!!
 
+        adapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.place_history_type,
+            android.R.layout.simple_spinner_item
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerCategoryAddPlaceHistory.adapter = adapter
+
         if(OPERATION_TYPE == "Update"){
             val placeName = intent.getStringExtra(PLACE_NAME)
             val placeAddress = intent.getStringExtra(PLACE_ADDRESS)
@@ -58,6 +74,8 @@ class AddPlaceHistoryActivity : AppCompatActivity() {
         }
 
         databaseRef = database.getReference("place_history")
+
+        spinnerCategoryAddPlaceHistory.onItemSelectedListener = this
 
         tbAddPlaceHistory.setNavigationOnClickListener { finish() }
 
@@ -75,24 +93,26 @@ class AddPlaceHistoryActivity : AppCompatActivity() {
     private fun setToTextInput(placeName: String?, placeDate: String?, placeAddress: String?, placeType: String?) {
         tieNameAddPlaceHistory.setText(placeName)
         tieAddressAddPlaceHistory.setText(placeAddress)
-        tieCategoryAddPlaceHistory.setText(placeType)
+
+        val spinnerPosition = adapter.getPosition(placeType)
+        spinnerCategoryAddPlaceHistory.setSelection(spinnerPosition)
+
         tieDateAddPlaceHistory.setText(placeDate)
     }
 
     private fun checkForm() {
         val placeName = tieNameAddPlaceHistory.text.toString()
         val placeAddress = tieAddressAddPlaceHistory.text.toString()
-        val placeType = tieCategoryAddPlaceHistory.text.toString()
         val placeDate = tieDateAddPlaceHistory.text.toString()
 
         when {
             placeName.isEmpty() -> tilNameAddPlaceHistory.error = "Isi nama tempat !"
             placeAddress.isEmpty() -> tilAddressAddPlaceHistory.error = "Isi alamat tempat !"
-            placeType.isEmpty() -> tilCategoryAddPlaceHistory.error = "Isi jenis perjalanan !"
+            categoryPlaceHistory.isEmpty() -> showToast(this,"Isi jenis perjalanan !")
             placeDate.isEmpty() -> tilDateAddPlaceHistory.error = "Isi tanggal perjalanan !"
             else -> when(OPERATION_TYPE){
-                "Input" -> insertData(placeName, placeAddress, placeType, placeDate)
-                "Update" -> updateData(placeName, placeAddress, placeType, placeDate)
+                "Input" -> insertData(placeName, placeAddress, categoryPlaceHistory, placeDate)
+                "Update" -> updateData(placeName, placeAddress, categoryPlaceHistory, placeDate)
             }
         }
     }
@@ -124,5 +144,14 @@ class AddPlaceHistoryActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         this.clearFindViewByIdCache()
+    }
+
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        categoryPlaceHistory = parent?.getItemAtPosition(position).toString()
     }
 }
