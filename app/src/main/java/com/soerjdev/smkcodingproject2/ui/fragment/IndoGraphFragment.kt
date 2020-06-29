@@ -52,10 +52,7 @@ class IndoGraphFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         initView()
-
-//        getIndoData()
 
         super.onViewCreated(view, savedInstanceState)
     }
@@ -71,34 +68,6 @@ class IndoGraphFragment : Fragment() {
             }
         })
     }
-
-//    private fun getIndoData() {
-//        val httpClient = httpClient()
-//        val apiRequest = apiRequest<ApiEndPoints>(httpClient, ApiUtils.URL_COVID_GOV)
-//
-//        val call = apiRequest.getUpdateData()
-//        call.enqueue(object : Callback<UpdateData> {
-//            override fun onFailure(call: Call<UpdateData>, t: Throwable) {
-//                pbLoadIndoGraph.visibility = View.GONE
-//                containerTimeoutIndoGraph.visibility = View.VISIBLE
-//            }
-//            override fun onResponse(call: Call<UpdateData>, response: Response<UpdateData>) {
-//                if(response.isSuccessful){
-//                    if(response.body() != null){
-//                        updateData = response.body()!!
-//                        val indoSummaryDatas = IndoSummary(
-//                            updateData.update.total.jumlahDirawat,
-//                            updateData.update.total.jumlahMeninggal,
-//                            updateData.update.total.jumlahPositif,
-//                            updateData.update.total.jumlahSembuh)
-//
-//                        indoSummaryViewModel.insert(indoSummaryDatas)
-//                        setDataToChart()
-//                    }
-//                }
-//            }
-//        })
-//    }
 
     private fun setDataToChart() {
 

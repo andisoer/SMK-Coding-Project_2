@@ -6,11 +6,9 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
 import com.soerjdev.smkcodingproject2.R
 import com.soerjdev.smkcodingproject2.model.placehistory.PlaceHistory
 import com.soerjdev.smkcodingproject2.utils.showToast
@@ -51,6 +49,8 @@ class AddPlaceHistoryActivity : AppCompatActivity(),
 
     private fun initView() {
 
+        tbAddPlaceHistory.setNavigationOnClickListener { finish() }
+
         val intent = intent
 
         OPERATION_TYPE = intent.getStringExtra(TAG_OPERATION_TYPE)!!
@@ -76,8 +76,6 @@ class AddPlaceHistoryActivity : AppCompatActivity(),
         databaseRef = database.getReference("place_history")
 
         spinnerCategoryAddPlaceHistory.onItemSelectedListener = this
-
-        tbAddPlaceHistory.setNavigationOnClickListener { finish() }
 
         if(OPERATION_TYPE == "Update"){
             btnAddPlaceHistory.text = "Update Riwayat"
@@ -145,7 +143,6 @@ class AddPlaceHistoryActivity : AppCompatActivity(),
         super.onDestroy()
         this.clearFindViewByIdCache()
     }
-
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
 

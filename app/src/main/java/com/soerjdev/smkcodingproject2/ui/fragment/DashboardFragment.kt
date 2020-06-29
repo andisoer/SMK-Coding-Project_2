@@ -167,7 +167,6 @@ class DashboardFragment : Fragment() {
 
         call.enqueue(object: Callback<UpdateData> {
             override fun onFailure(call: Call<UpdateData>, t: Throwable) {
-//                containerTimeoutDashboard.visibility = View.VISIBLE
                 containerShimmerDashboard.visibility = View.GONE
                 containerShimmerDashboard.stopShimmer()
                 containerDataDashboard.visibility = View.VISIBLE
@@ -199,7 +198,6 @@ class DashboardFragment : Fragment() {
         val call = apiRequest.getProvData()
         call.enqueue(object : Callback<ProvData> {
             override fun onFailure(call: Call<ProvData>, t: Throwable) {
-//                containerTimeoutDashboard.visibility = View.VISIBLE
                 containerShimmerDashboard.visibility = View.GONE
                 containerShimmerDashboard.stopShimmer()
                 containerDataDashboard.visibility = View.VISIBLE
@@ -238,7 +236,6 @@ class DashboardFragment : Fragment() {
         val call = apiRequest.getWorldSummaryData()
         call.enqueue(object : Callback<GlobalCasesSummary>{
             override fun onFailure(call: Call<GlobalCasesSummary>, t: Throwable) {
-//                containerTimeoutDashboard.visibility = View.VISIBLE
                 containerShimmerDashboard.visibility = View.GONE
                 containerShimmerDashboard.stopShimmer()
                 containerDataDashboard.visibility = View.VISIBLE
@@ -261,9 +258,6 @@ class DashboardFragment : Fragment() {
                         containerDataDashboard.visibility = View.VISIBLE
                         containerShimmerDashboard.visibility = View.GONE
                         containerShimmerDashboard.stopShimmer()
-//                        containerDataDashboard.visibility = View.VISIBLE
-//                        containerShimmerDashboard.visibility = View.GONE
-//                        containerShimmerDashboard.stopShimmer()
                     }
                 }
             }

@@ -79,13 +79,6 @@ class AllProvinceDataActivity : AppCompatActivity() {
 
         provinsiCasesViewModel.insert(provinceCasesList)
 
-//        rvAllProvinceData.layoutManager = LinearLayoutManager(this)
-//        rvAllProvinceData.adapter =
-//            ProvinsiListAdapter(
-//                this,
-//                listData
-//            )
-//
     }
 
     private fun getAllProvinceData() {
@@ -107,27 +100,6 @@ class AllProvinceDataActivity : AppCompatActivity() {
                 }
             }
         })
-
-//        val call = apiRequest.getProvinceListData()
-//        call.enqueue(object : Callback<List<ProvinsiDataItem>> {
-//            override fun onFailure(call: Call<List<ProvinsiDataItem>>, t: Throwable) {
-//
-//            }
-//
-//            override fun onResponse(
-//                call: Call<List<ProvinsiDataItem>>,
-//                response: Response<List<ProvinsiDataItem>>
-//            ) {
-//                when {
-//                    response.isSuccessful ->
-//                        when {
-//                            response.body()?.size != 0 ->
-//                                setData(response.body()!!)
-//                        }
-//                }
-//            }
-//
-//        })
     }
 
     override fun onSupportNavigateUp(): Boolean {

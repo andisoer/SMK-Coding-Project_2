@@ -35,15 +35,8 @@ import kotlin.collections.ArrayList
  */
 class WorldGraphFragment : Fragment() {
 
-    private var positifWorld : String = ""
-    private var recoveredWorld : String = ""
-    private var deathWorld : String = ""
-
     private lateinit var globalSummaryViewModel: GlobalSummaryViewModel
     private lateinit var globalSummaryData: GlobalSummary
-
-
-    lateinit var globalCasesSummary: GlobalCasesSummary
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,9 +47,6 @@ class WorldGraphFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-//        getWorldData()
-
         initView()
 
         super.onViewCreated(view, savedInstanceState)
@@ -73,31 +63,6 @@ class WorldGraphFragment : Fragment() {
             }
         })
     }
-
-//    private fun getWorldData() {
-//        val httpClient = httpClient()
-//        val apiRequest = apiRequest<ApiEndPoints>(httpClient, ApiUtils.URL_COVID_MATHDROID)
-//
-//        val call = apiRequest.getWorldSummaryData()
-//        call.enqueue(object : Callback<GlobalCasesSummary>{
-//            override fun onFailure(call: Call<GlobalCasesSummary>, t: Throwable) {
-//                pbLoadWorldGraph.visibility = View.GONE
-//                containerTimeoutWorldGraph.visibility = View.VISIBLE
-//            }
-//
-//            override fun onResponse(
-//                call: Call<GlobalCasesSummary>,
-//                response: Response<GlobalCasesSummary>
-//            ) {
-//                if(response.isSuccessful){
-//                    if(response.body() != null){
-//                        globalCasesSummary = response.body()!!
-//                        setDataToChart()
-//                    }
-//                }
-//            }
-//        })
-//    }
 
     private fun setDataToChart() {
         val entries: ArrayList<PieEntry> = ArrayList()
